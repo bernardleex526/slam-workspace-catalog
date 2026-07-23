@@ -1,0 +1,20 @@
+id	sensors	role	upstream_ros	manifest	notes
+fast_lio	LiDAR+IMU	odometry/mapping	ROS1	manifests/fast_lio.repos	FAST-LIO2 official repository; no built-in global relocalization
+lio_sam	LiDAR+IMU(+GPS)	full SLAM	ROS1	manifests/lio_sam.repos	Factor graph, loop closure and GPS factor
+point_lio	LiDAR+IMU	high-rate odometry/mapping	ROS1	manifests/point_lio.repos	Aggressive motion and IMU saturation
+faster_lio	LiDAR+IMU	odometry/mapping	ROS1	manifests/faster_lio.repos	Parallel incremental voxels
+dlio	LiDAR+IMU	odometry/mapping	ROS1	manifests/dlio.repos	Continuous-time motion correction
+sc_lio_sam	LiDAR+IMU	full SLAM	ROS1	manifests/sc_lio_sam.repos	LIO-SAM plus Scan Context
+pv_lio	LiDAR+IMU	odometry/mapping	ROS1	manifests/pv_lio.repos	Probabilistic voxel map
+fast_livo2	LiDAR+Camera+IMU	odometry/colored mapping	ROS1	manifests/fast_livo2.repos	Direct tightly coupled LIV
+r3live	LiDAR+Camera+IMU	odometry/colored mapping	ROS1	manifests/r3live.repos	RGB-colored map and mesh utilities
+r2live	LiDAR+Camera+IMU	odometry/mapping	ROS1	manifests/r2live.repos	Predecessor of R3LIVE
+lvi_sam	LiDAR+Camera+IMU	full SLAM	ROS1	manifests/lvi_sam.repos	LIO-SAM plus VINS
+mins	IMU+Camera+LiDAR+GNSS+Wheel	state estimation	ROS1	manifests/mins.repos	Generic multi-sensor estimator
+hdl_graph_slam	LiDAR(+IMU+GPS)	full SLAM	ROS1	manifests/hdl_graph_slam.repos	NDT/GICP graph SLAM
+cartographer	LiDAR(+IMU)	full SLAM	ROS1	manifests/cartographer.repos	Classic 2D/3D SLAM; upstream archived
+lego_loam	LiDAR(+IMU)	full SLAM	ROS1	manifests/lego_loam.repos	Classic ground-vehicle baseline
+a_loam	LiDAR	odometry/mapping	ROS1	manifests/a_loam.repos	Readable LOAM baseline
+vins_fusion	Camera+IMU(+GPS)	VIO/SLAM	ROS1	manifests/vins_fusion.repos	Mono/stereo visual-inertial
+open_vins	Camera+IMU	VIO	ROS1	manifests/open_vins.repos	Filter-based visual-inertial estimator
+kimera_vio	Camera+IMU	VIO/SLAM	ROS1	manifests/kimera_vio.repos	Stereo/mono VIO with loop closure options
