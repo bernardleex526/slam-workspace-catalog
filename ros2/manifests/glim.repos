@@ -1,0 +1,13 @@
+repositories:
+  gtsam_points:
+    type: git
+    url: https://github.com/koide3/gtsam_points.git
+    version: master
+  glim:
+    type: git
+    url: https://github.com/koide3/glim.git
+    version: master
+  glim_ros2:
+    type: git
+    url: https://github.com/koide3/glim_ros2.git
+    version: master

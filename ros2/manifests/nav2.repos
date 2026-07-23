@@ -1,0 +1,9 @@
+repositories:
+  navigation2:
+    type: git
+    url: https://github.com/ros-navigation/navigation2.git
+    version: main
+  navigation2_tutorials:
+    type: git
+    url: https://github.com/ros-navigation/navigation2_tutorials.git
+    version: master
