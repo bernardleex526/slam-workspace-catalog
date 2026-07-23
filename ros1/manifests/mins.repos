@@ -1,0 +1,5 @@
+repositories:
+  MINS:
+    type: git
+    url: https://github.com/rpng/MINS.git
+    version: master

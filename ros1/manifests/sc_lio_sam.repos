@@ -1,0 +1,5 @@
+repositories:
+  SC-LIO-SAM:
+    type: git
+    url: https://github.com/gisbi-kim/SC-LIO-SAM.git
+    version: main

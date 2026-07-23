@@ -1,0 +1,5 @@
+repositories:
+  LeGO-LOAM:
+    type: git
+    url: https://github.com/RobustFieldAutonomyLab/LeGO-LOAM.git
+    version: master

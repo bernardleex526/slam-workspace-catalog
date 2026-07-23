@@ -1,0 +1,5 @@
+repositories:
+  faster-lio:
+    type: git
+    url: https://github.com/gaoxiang12/faster-lio.git
+    version: main

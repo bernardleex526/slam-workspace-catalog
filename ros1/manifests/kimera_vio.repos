@@ -1,0 +1,9 @@
+repositories:
+  Kimera-VIO:
+    type: git
+    url: https://github.com/MIT-SPARK/Kimera-VIO.git
+    version: master
+  Kimera-VIO-ROS:
+    type: git
+    url: https://github.com/MIT-SPARK/Kimera-VIO-ROS.git
+    version: master

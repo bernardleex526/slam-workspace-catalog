@@ -1,0 +1,5 @@
+repositories:
+  r2live:
+    type: git
+    url: https://github.com/hku-mars/r2live.git
+    version: master

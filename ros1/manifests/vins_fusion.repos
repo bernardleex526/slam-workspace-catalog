@@ -1,0 +1,5 @@
+repositories:
+  VINS-Fusion:
+    type: git
+    url: https://github.com/HKUST-Aerial-Robotics/VINS-Fusion.git
+    version: master

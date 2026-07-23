@@ -1,0 +1,5 @@
+repositories:
+  PV-LIO:
+    type: git
+    url: https://github.com/HViktorTsoi/PV-LIO.git
+    version: main

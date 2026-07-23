@@ -1,0 +1,9 @@
+repositories:
+  Point-LIO:
+    type: git
+    url: https://github.com/hku-mars/Point-LIO.git
+    version: point-lio-with-grid-map
+  livox_ros_driver:
+    type: git
+    url: https://github.com/Livox-SDK/livox_ros_driver.git
+    version: master

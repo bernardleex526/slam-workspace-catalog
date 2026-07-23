@@ -1,0 +1,13 @@
+repositories:
+  hdl_graph_slam:
+    type: git
+    url: https://github.com/koide3/hdl_graph_slam.git
+    version: master
+  ndt_omp:
+    type: git
+    url: https://github.com/koide3/ndt_omp.git
+    version: master
+  fast_gicp:
+    type: git
+    url: https://github.com/koide3/fast_gicp.git
+    version: master

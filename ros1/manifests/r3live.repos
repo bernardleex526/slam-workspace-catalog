@@ -1,0 +1,5 @@
+repositories:
+  r3live:
+    type: git
+    url: https://github.com/hku-mars/r3live.git
+    version: master
