@@ -1,0 +1,10 @@
+id	sensors	role	ros2_status	manifest	notes
+kiss_icp	LiDAR	odometry	Official mainline	manifests/kiss_icp.repos	ROS1 is deprecated upstream
+glim	LiDAR+IMU	odometry/mapping	Official	manifests/glim.repos	Requires compatible GTSAM/gtsam_points; optional CUDA
+dlio	LiDAR+IMU	odometry/mapping	Upstream feature/ros2 branch	manifests/dlio.repos	ROS2 port in author repository
+mola	LiDAR(+IMU)	localization/mapping	Official	manifests/mola.repos	Modern modular ROS2 framework
+rtabmap	RGB-D+Stereo+LiDAR	SLAM/localization	Official ros2 branch	manifests/rtabmap.repos	Includes Nav2 integration examples
+slam_toolbox	2D LiDAR	SLAM/localization	Official	manifests/slam_toolbox.repos	Supported ROS2 2D SLAM
+robot_localization	Wheel+IMU+GNSS+Odometry	state fusion	Official	manifests/robot_localization.repos	EKF/UKF and navsat transform
+nav2	2D/2.5D navigation	planning/control	Official	manifests/nav2.repos	Plugin-based ROS2 navigation framework
+autoware	LiDAR+Camera+Radar+GNSS	autonomous driving	Official	manifests/autoware.repos	Use upstream setup and .repos workflow
