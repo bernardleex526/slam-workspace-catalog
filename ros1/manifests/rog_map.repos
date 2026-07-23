@@ -1,0 +1,5 @@
+repositories:
+  ROG-Map:
+    type: git
+    url: https://github.com/hku-mars/ROG-Map.git
+    version: main

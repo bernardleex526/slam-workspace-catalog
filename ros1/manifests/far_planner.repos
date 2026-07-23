@@ -1,0 +1,5 @@
+repositories:
+  far_planner:
+    type: git
+    url: https://github.com/MichaelFYang/far_planner.git
+    version: melodic-noetic

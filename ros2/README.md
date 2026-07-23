@@ -136,3 +136,32 @@ rosbag2、MCAP、PCD和地图不要提交到Git：
 ## 许可证
 
 本仓库仅包含管理脚本和源码清单。第三方项目仍受各自许可证及商业使用条款约束。
+
+## 新增定位、建图与导航项目
+
+```bash
+# 地图构建和已有点云地图定位
+bash scripts/fetch.sh norlab_icp_mapper
+
+# 新一代 MCL/AMCL 兼容定位
+bash scripts/fetch.sh beluga
+
+# GPU 三维重建和 Nav2 代价地图
+bash scripts/fetch.sh isaac_ros_nvblox
+
+# 新型 ROS2 导航框架和 Nav2 全覆盖扩展
+bash scripts/fetch.sh easynavigation
+bash scripts/fetch.sh opennav_coverage
+```
+
+注意：
+
+- NorLab ICP Mapper 可通过参数关闭建图并进入 localization-only 模式，也支持
+  加载已有地图和外部初始位姿。
+- Beluga 与 `nav2_amcl` 接口兼容度较高，包含实例、benchmark 和系统测试。
+- Isaac ROS Nvblox 需要 NVIDIA GPU、CUDA 和匹配的 Isaac ROS 环境；它需要
+  外部位姿输入，本身不是 SLAM。
+- EasyNavigation 是仍在发展的 Nav2 替代框架。生产项目仍建议以 Nav2 为主线，
+  EasyNav 作为 GridMap、OctoMap、点云或混合地图导航预研。
+- OpenNav Coverage 是 Nav2 扩展，适用于清扫、割草、喷洒、巡检和农田全覆盖，
+  不是 Nav2 的替代品。

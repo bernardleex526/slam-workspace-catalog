@@ -128,3 +128,31 @@ vcs import workspaces/fast_lio_ws/src < locks/fast_lio-exact.repos
 
 本仓库仅包含管理脚本和源码清单。每个第三方项目仍受其自身许可证约束；尤其注意
 GPL、学术用途限制以及商业授权条款。
+
+## 新增建图与导航项目
+
+```bash
+# 完整 LiDAR-Inertial SLAM、多会话和全局优化
+bash scripts/fetch.sh voxel_slam
+bash scripts/fetch.sh ltaom
+
+# 实时网格及高质量视觉地图
+bash scripts/fetch.sh immesh
+bash scripts/fetch.sh gaussian_lic
+
+# 三维导航、探索和规划地图
+bash scripts/fetch.sh far_planner
+bash scripts/fetch.sh tare_planner
+bash scripts/fetch.sh rog_map
+```
+
+注意：
+
+- Voxel-SLAM 面向 Ubuntu 20.04/ROS Noetic，并提供 Livox、HILTI、MARS 和
+  MID360 数据实例。
+- ImMesh 需要 CGAL、OpenGL 等额外依赖。
+- Gaussian-LIC 属于重型研究环境，需要 CUDA、LibTorch、TensorRT、
+  OpenCV-CUDA 和 Coco-LIC；建议使用独立系统镜像或容器。
+- FAR Planner 与 TARE Planner 的仓库本身带有专用 workspace 和仿真环境，
+  下载后应按上游说明编译，不保证通用 `scripts/build.sh` 直接成功。
+- ROG-Map 是面向规划的三维占据地图后端，不负责估计机器人位姿。

@@ -1,0 +1,5 @@
+repositories:
+  opennav_coverage:
+    type: git
+    url: https://github.com/open-navigation/opennav_coverage.git
+    version: humble

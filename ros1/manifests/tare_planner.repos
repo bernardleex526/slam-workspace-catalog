@@ -1,0 +1,5 @@
+repositories:
+  tare_planner:
+    type: git
+    url: https://github.com/caochao39/tare_planner.git
+    version: melodic-noetic

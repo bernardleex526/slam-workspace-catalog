@@ -1,0 +1,9 @@
+workspaces/
+locks/*-exact.repos
+__pycache__/
+*.log
+*.bag
+*.db3
+*.mcap
+*.pcd
+*.ply

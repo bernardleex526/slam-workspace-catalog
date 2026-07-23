@@ -1,0 +1,5 @@
+repositories:
+  LTAOM:
+    type: git
+    url: https://github.com/hku-mars/LTAOM.git
+    version: main

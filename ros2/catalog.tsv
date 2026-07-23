@@ -8,3 +8,8 @@ slam_toolbox	2D LiDAR	SLAM/localization	Official	manifests/slam_toolbox.repos	Su
 robot_localization	Wheel+IMU+GNSS+Odometry	state fusion	Official	manifests/robot_localization.repos	EKF/UKF and navsat transform
 nav2	2D/2.5D navigation	planning/control	Official	manifests/nav2.repos	Plugin-based ROS2 navigation framework
 autoware	LiDAR+Camera+Radar+GNSS	autonomous driving	Official	manifests/autoware.repos	Use upstream setup and .repos workflow
+norlab_icp_mapper	2D/3D LiDAR	mapping/map-based localization	Official ROS2 branch	manifests/norlab_icp_mapper.repos	ICP mapper with map load/save, relocalization and localization-only mode
+beluga	2D LiDAR(+3D OpenVDB)	Monte Carlo localization	Official ROS1/ROS2	manifests/beluga.repos	Modern AMCL-compatible MCL with examples, benchmarks and system tests
+isaac_ros_nvblox	Depth Camera/3D LiDAR+Pose	TSDF/ESDF/mesh/Nav2 costmap	Official ROS2	manifests/isaac_ros_nvblox.repos	NVIDIA GPU and Isaac ROS environment required; mapping backend, not SLAM
+easynavigation	2D/3D/Hybrid maps	localization/planning/control	Official ROS2	manifests/easynavigation.repos	Emerging Nav2 alternative with Kobuki and Summit simulation playgrounds
+opennav_coverage	2D map/GNSS	complete coverage navigation	Official ROS2/Nav2 extension	manifests/opennav_coverage.repos	Nav2 task server for cleaning, mowing, inspection and agricultural coverage
