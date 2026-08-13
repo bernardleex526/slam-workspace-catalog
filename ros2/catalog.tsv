@@ -1,15 +1,15 @@
-id	sensors	role	ros2_status	manifest	notes
-kiss_icp	LiDAR	odometry	Official mainline	manifests/kiss_icp.repos	ROS1 is deprecated upstream
-glim	LiDAR+IMU	odometry/mapping	Official	manifests/glim.repos	Requires compatible GTSAM/gtsam_points; optional CUDA
-dlio	LiDAR+IMU	odometry/mapping	Upstream feature/ros2 branch	manifests/dlio.repos	ROS2 port in author repository
-mola	LiDAR(+IMU)	localization/mapping	Official	manifests/mola.repos	Modern modular ROS2 framework
-rtabmap	RGB-D+Stereo+LiDAR	SLAM/localization	Official ros2 branch	manifests/rtabmap.repos	Includes Nav2 integration examples
-slam_toolbox	2D LiDAR	SLAM/localization	Official	manifests/slam_toolbox.repos	Supported ROS2 2D SLAM
-robot_localization	Wheel+IMU+GNSS+Odometry	state fusion	Official	manifests/robot_localization.repos	EKF/UKF and navsat transform
-nav2	2D/2.5D navigation	planning/control	Official	manifests/nav2.repos	Plugin-based ROS2 navigation framework
-autoware	LiDAR+Camera+Radar+GNSS	autonomous driving	Official	manifests/autoware.repos	Use upstream setup and .repos workflow
-norlab_icp_mapper	2D/3D LiDAR	mapping/map-based localization	Official ROS2 branch	manifests/norlab_icp_mapper.repos	ICP mapper with map load/save, relocalization and localization-only mode
-beluga	2D LiDAR(+3D OpenVDB)	Monte Carlo localization	Official ROS1/ROS2	manifests/beluga.repos	Modern AMCL-compatible MCL with examples, benchmarks and system tests
-isaac_ros_nvblox	Depth Camera/3D LiDAR+Pose	TSDF/ESDF/mesh/Nav2 costmap	Official ROS2	manifests/isaac_ros_nvblox.repos	NVIDIA GPU and Isaac ROS environment required; mapping backend, not SLAM
-easynavigation	2D/3D/Hybrid maps	localization/planning/control	Official ROS2	manifests/easynavigation.repos	Emerging Nav2 alternative with Kobuki and Summit simulation playgrounds
-opennav_coverage	2D map/GNSS	complete coverage navigation	Official ROS2/Nav2 extension	manifests/opennav_coverage.repos	Nav2 task server for cleaning, mowing, inspection and agricultural coverage
+id	sensors	role	ros2_status	build_mode	manifest	notes
+kiss_icp	LiDAR	odometry	Official mainline	generic	manifests/kiss_icp.repos	ROS1 is deprecated upstream
+glim	LiDAR+IMU	odometry/mapping	Official	generic	manifests/glim.repos	Requires compatible GTSAM/gtsam_points; optional CUDA
+dlio	LiDAR+IMU	odometry/mapping	Upstream feature/ros2 branch	generic	manifests/dlio.repos	ROS2 port in author repository
+mola	LiDAR(+IMU)	localization/mapping	Official	generic	manifests/mola.repos	Modern modular ROS2 framework
+rtabmap	RGB-D+Stereo+LiDAR	SLAM/localization	Official ros2 branch	generic	manifests/rtabmap.repos	Includes Nav2 integration examples
+slam_toolbox	2D LiDAR	SLAM/localization	Official	generic	manifests/slam_toolbox.repos	Supported ROS2 2D SLAM
+robot_localization	Wheel+IMU+GNSS+Odometry	state fusion	Official	generic	manifests/robot_localization.repos	EKF/UKF and navsat transform
+nav2	2D/2.5D navigation	planning/control	Official	generic	manifests/nav2.repos	Plugin-based ROS2 navigation framework
+autoware	LiDAR+Camera+Radar+GNSS	autonomous driving	Official	custom	manifests/autoware.repos	Use upstream setup and .repos workflow
+norlab_icp_mapper	2D/3D LiDAR	mapping/map-based localization	Official ROS2 branch	generic	manifests/norlab_icp_mapper.repos	ICP mapper with map load/save, relocalization and localization-only mode
+beluga	2D LiDAR(+3D OpenVDB)	Monte Carlo localization	Official ROS1/ROS2	generic	manifests/beluga.repos	Modern AMCL-compatible MCL with examples, benchmarks and system tests
+isaac_ros_nvblox	Depth Camera/3D LiDAR+Pose	TSDF/ESDF/mesh/Nav2 costmap	Official ROS2	custom	manifests/isaac_ros_nvblox.repos	NVIDIA GPU and Isaac ROS environment required; mapping backend, not SLAM
+easynavigation	2D/3D/Hybrid maps	localization/planning/control	Official ROS2	generic	manifests/easynavigation.repos	Emerging Nav2 alternative with Kobuki and Summit simulation playgrounds
+opennav_coverage	2D map/GNSS	complete coverage navigation	Official ROS2/Nav2 extension	generic	manifests/opennav_coverage.repos	Nav2 task server for cleaning, mowing, inspection and agricultural coverage

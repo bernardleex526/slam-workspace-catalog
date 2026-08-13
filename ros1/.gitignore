@@ -5,6 +5,9 @@ locks/*-local.repos
 **/devel/
 **/install/
 **/log/
+**/.venv/
+__pycache__/
+*.pyc
 
 *.bag
 *.bag.active

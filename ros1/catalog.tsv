@@ -1,27 +1,27 @@
-id	sensors	role	upstream_ros	manifest	notes
-fast_lio	LiDAR+IMU	odometry/mapping	ROS1	manifests/fast_lio.repos	FAST-LIO2 official repository; no built-in global relocalization
-lio_sam	LiDAR+IMU(+GPS)	full SLAM	ROS1	manifests/lio_sam.repos	Factor graph, loop closure and GPS factor
-point_lio	LiDAR+IMU	high-rate odometry/mapping	ROS1	manifests/point_lio.repos	Aggressive motion and IMU saturation
-faster_lio	LiDAR+IMU	odometry/mapping	ROS1	manifests/faster_lio.repos	Parallel incremental voxels
-dlio	LiDAR+IMU	odometry/mapping	ROS1	manifests/dlio.repos	Continuous-time motion correction
-sc_lio_sam	LiDAR+IMU	full SLAM	ROS1	manifests/sc_lio_sam.repos	LIO-SAM plus Scan Context
-pv_lio	LiDAR+IMU	odometry/mapping	ROS1	manifests/pv_lio.repos	Probabilistic voxel map
-fast_livo2	LiDAR+Camera+IMU	odometry/colored mapping	ROS1	manifests/fast_livo2.repos	Direct tightly coupled LIV
-r3live	LiDAR+Camera+IMU	odometry/colored mapping	ROS1	manifests/r3live.repos	RGB-colored map and mesh utilities
-r2live	LiDAR+Camera+IMU	odometry/mapping	ROS1	manifests/r2live.repos	Predecessor of R3LIVE
-lvi_sam	LiDAR+Camera+IMU	full SLAM	ROS1	manifests/lvi_sam.repos	LIO-SAM plus VINS
-mins	IMU+Camera+LiDAR+GNSS+Wheel	state estimation	ROS1	manifests/mins.repos	Generic multi-sensor estimator
-hdl_graph_slam	LiDAR(+IMU+GPS)	full SLAM	ROS1	manifests/hdl_graph_slam.repos	NDT/GICP graph SLAM
-cartographer	LiDAR(+IMU)	full SLAM	ROS1	manifests/cartographer.repos	Classic 2D/3D SLAM; upstream archived
-lego_loam	LiDAR(+IMU)	full SLAM	ROS1	manifests/lego_loam.repos	Classic ground-vehicle baseline
-a_loam	LiDAR	odometry/mapping	ROS1	manifests/a_loam.repos	Readable LOAM baseline
-vins_fusion	Camera+IMU(+GPS)	VIO/SLAM	ROS1	manifests/vins_fusion.repos	Mono/stereo visual-inertial
-open_vins	Camera+IMU	VIO	ROS1	manifests/open_vins.repos	Filter-based visual-inertial estimator
-kimera_vio	Camera+IMU	VIO/SLAM	ROS1	manifests/kimera_vio.repos	Stereo/mono VIO with loop closure options
-voxel_slam	LiDAR+IMU	full SLAM/multi-session	ROS1 Noetic	manifests/voxel_slam.repos	Loop closure, global BA, relocalization and public rosbag examples
-ltaom	LiDAR+IMU	long-term/multi-session SLAM	ROS1 Noetic	manifests/ltaom.repos	FAST-LIO plus place recognition, loop optimization and multi-session mapping
-immesh	LiDAR(+IMU)	odometry/meshing	ROS1	manifests/immesh.repos	Real-time localization and incremental mesh; custom CGAL/OpenGL dependencies
-gaussian_lic	LiDAR+Camera+IMU	photorealistic Gaussian SLAM	ROS1 custom build	manifests/gaussian_lic.repos	Research/heavy; CUDA, LibTorch, TensorRT, OpenCV-CUDA and Coco-LIC required
-far_planner	3D LiDAR	known/unknown environment navigation	ROS1 Noetic custom build	manifests/far_planner.repos	DARPA SubT-tested visibility-graph planner; uses its own workspace instructions
-tare_planner	3D LiDAR	autonomous exploration	ROS1 Noetic custom build	manifests/tare_planner.repos	Hierarchical large-scale exploration; uses its own development environment
-rog_map	3D LiDAR	occupancy mapping for planning	ROS1	manifests/rog_map.repos	High-performance mapping backend, not a pose-estimation SLAM system
+id	sensors	role	upstream_ros	build_mode	manifest	notes
+fast_lio	LiDAR+IMU	odometry/mapping	ROS1	generic	manifests/fast_lio.repos	FAST-LIO2 official repository; no built-in global relocalization
+lio_sam	LiDAR+IMU(+GPS)	full SLAM	ROS1	generic	manifests/lio_sam.repos	Factor graph, loop closure and GPS factor
+point_lio	LiDAR+IMU	high-rate odometry/mapping	ROS1	generic	manifests/point_lio.repos	Aggressive motion and IMU saturation
+faster_lio	LiDAR+IMU	odometry/mapping	ROS1	generic	manifests/faster_lio.repos	Parallel incremental voxels
+dlio	LiDAR+IMU	odometry/mapping	ROS1	generic	manifests/dlio.repos	Continuous-time motion correction
+sc_lio_sam	LiDAR+IMU	full SLAM	ROS1	generic	manifests/sc_lio_sam.repos	LIO-SAM plus Scan Context
+pv_lio	LiDAR+IMU	odometry/mapping	ROS1	generic	manifests/pv_lio.repos	Probabilistic voxel map
+fast_livo2	LiDAR+Camera+IMU	odometry/colored mapping	ROS1	generic	manifests/fast_livo2.repos	Direct tightly coupled LIV
+r3live	LiDAR+Camera+IMU	odometry/colored mapping	ROS1	generic	manifests/r3live.repos	RGB-colored map and mesh utilities
+r2live	LiDAR+Camera+IMU	odometry/mapping	ROS1	generic	manifests/r2live.repos	Predecessor of R3LIVE
+lvi_sam	LiDAR+Camera+IMU	full SLAM	ROS1	generic	manifests/lvi_sam.repos	LIO-SAM plus VINS
+mins	IMU+Camera+LiDAR+GNSS+Wheel	state estimation	ROS1	generic	manifests/mins.repos	Generic multi-sensor estimator
+hdl_graph_slam	LiDAR(+IMU+GPS)	full SLAM	ROS1	generic	manifests/hdl_graph_slam.repos	NDT/GICP graph SLAM
+cartographer	LiDAR(+IMU)	full SLAM	ROS1	heavy	manifests/cartographer.repos	Classic 2D/3D SLAM; upstream archived; pinned Abseil/Ceres/Protobuf install
+lego_loam	LiDAR(+IMU)	full SLAM	ROS1	generic	manifests/lego_loam.repos	Classic ground-vehicle baseline
+a_loam	LiDAR	odometry/mapping	ROS1	generic	manifests/a_loam.repos	Readable LOAM baseline
+vins_fusion	Camera+IMU(+GPS)	VIO/SLAM	ROS1	generic	manifests/vins_fusion.repos	Mono/stereo visual-inertial
+open_vins	Camera+IMU	VIO	ROS1	generic	manifests/open_vins.repos	Filter-based visual-inertial estimator
+kimera_vio	Camera+IMU	VIO/SLAM	ROS1	heavy	manifests/kimera_vio.repos	Stereo/mono VIO with loop closure options; pinned GTSAM/OpenGV/DBoW2
+voxel_slam	LiDAR+IMU	full SLAM/multi-session	ROS1 Noetic	generic	manifests/voxel_slam.repos	Loop closure, global BA, relocalization and public rosbag examples
+ltaom	LiDAR+IMU	long-term/multi-session SLAM	ROS1 Noetic	generic	manifests/ltaom.repos	FAST-LIO plus place recognition, loop optimization and multi-session mapping
+immesh	LiDAR(+IMU)	odometry/meshing	ROS1 custom build	custom	manifests/immesh.repos	Real-time localization and incremental mesh; custom CGAL/OpenGL dependencies
+gaussian_lic	LiDAR+Camera+IMU	photorealistic Gaussian SLAM	ROS1 custom build	custom	manifests/gaussian_lic.repos	Research/heavy; CUDA, LibTorch, TensorRT, OpenCV-CUDA and Coco-LIC required
+far_planner	3D LiDAR	known/unknown environment navigation	ROS1 Noetic custom build	custom	manifests/far_planner.repos	DARPA SubT-tested visibility-graph planner; uses its own workspace instructions
+tare_planner	3D LiDAR	autonomous exploration	ROS1 Noetic custom build	custom	manifests/tare_planner.repos	Hierarchical large-scale exploration; uses its own development environment
+rog_map	3D LiDAR	occupancy mapping for planning	ROS1	generic	manifests/rog_map.repos	High-performance mapping backend, not a pose-estimation SLAM system
