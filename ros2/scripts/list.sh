@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -euo pipefail
-
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-column -t -s $'\t' "${ROOT}/catalog.tsv" 2>/dev/null || cat "${ROOT}/catalog.tsv"
+# Shared implementation: common/scripts/list.sh, run against this tree's catalog.
+SLAM_TREE_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+# shellcheck source=../../common/scripts/list.sh
+source "${SLAM_TREE_ROOT}/../common/scripts/list.sh"

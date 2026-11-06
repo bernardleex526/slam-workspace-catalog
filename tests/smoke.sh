@@ -28,6 +28,14 @@ for t in "${TREES[@]}"; do
     fi
   done < <(find "${t}/scripts" -maxdepth 1 -name '*.sh' | sort)
 done
+# Shared implementations used by the per-tree wrappers.
+while IFS= read -r s; do
+  if "${BASH_CMD}" -n "${s}"; then
+    ok "syntax: ${s}"
+  else
+    fail "syntax: ${s}"
+  fi
+done < <(find common/scripts -maxdepth 1 -name '*.sh' | sort)
 
 echo "== 2. catalog-manifest consistency =="
 for t in "${TREES[@]}"; do
