@@ -16,6 +16,9 @@
   MOLA、DLIO ROS 2、RTAB-Map、SLAM Toolbox、robot_localization、Nav2 与 Autoware。
 - [`standalone/`](standalone/)：没有官方 ROS wrapper、但算法本身值得保留的项目
   （当前为 KISS-SLAM）。
+- [`common/scripts/`](common/scripts/)：三个目录共用的 `catalog.sh` / `list.sh` 以及
+  ros2、standalone 共用的 `fetch.sh` / `lock.sh` 实现；各目录 `scripts/` 下保留同名薄封装，
+  命令用法不变。
 
 每个算法都使用独立 workspace，通过 `.repos` 清单按需下载，避免不同算法之间的
 GTSAM、Ceres、Sophus、PCL、OpenCV及消息包版本冲突。
