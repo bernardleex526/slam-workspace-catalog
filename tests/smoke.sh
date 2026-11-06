@@ -151,12 +151,15 @@ done
 
 echo "== 4. lock naming and ignore policy =="
 for t in "${TREES[@]}"; do
-  if grep -q -- '-exact\.repos' "${t}/scripts/lock.sh"; then
+  # Trees may delegate to common/scripts/lock.sh; check whichever file implements it.
+  lock_impl="${t}/scripts/lock.sh"
+  grep -q 'common/scripts/lock.sh' "${lock_impl}" && lock_impl="common/scripts/lock.sh"
+  if grep -q -- '-exact\.repos' "${lock_impl}"; then
     ok "${t}/lock.sh: produces -exact.repos"
   else
     fail "${t}/lock.sh: does not produce -exact.repos"
   fi
-  if grep -q -- '-local\.repos' "${t}/scripts/lock.sh"; then
+  if grep -q -- '-local\.repos' "${lock_impl}"; then
     ok "${t}/lock.sh: has --local mode"
   else
     fail "${t}/lock.sh: no --local mode"
