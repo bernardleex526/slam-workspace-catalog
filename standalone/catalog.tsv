@@ -1,2 +1,3 @@
 id	sensors	role	integration	build_mode	manifest	notes
 kiss_slam	LiDAR	full 3D SLAM	Standalone Python/C++	generic	manifests/kiss_slam.repos	No official ROS wrapper; use the upstream CLI or build a thin ROS2 bridge
+vggt_slam	RGB	dense visual SLAM	Standalone Python	custom	manifests/vggt_slam.repos	VGGT-SLAM 2.0; upstream setup.sh and Python 3.11 environment required; BSD-2-Clause core, separate dependency/model licenses; not locally benchmarked

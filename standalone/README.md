@@ -24,6 +24,22 @@ sudo apt install -y python3-vcstool build-essential libeigen3-dev libsuitesparse
 - KISS-SLAM：PRBonn 发布的完整 3D LiDAR SLAM，包含 KISS-ICP、回环检测和图优化。
   上游提供 Python/C++ CLI，但没有官方 ROS1/ROS2 wrapper。
 
+- [VGGT-SLAM 2.0](https://github.com/MIT-SPARK/VGGT-SLAM)：RGB 稠密视觉 SLAM，
+  上游当前 main 提供 2.0，1.0 在 version1.0 分支。当前核验到的是 Python CLI，
+  未核验到官方 ROS wrapper，因此归入 standalone。
+  核心代码 [BSD-2-Clause](https://github.com/MIT-SPARK/VGGT-SLAM/blob/main/LICENSE)，
+  VGGT、Perception Encoder、SAM 3 及模型权重另有许可，不能用核心许可概括全部依赖。
+
+### VGGT-SLAM 2.0 安装边界
+
+`bash scripts/fetch.sh vggt_slam` 只获取上游源码。
+此项目标记 `custom`，本仓库 `build.sh` 不提供它的通用构建路径，覆盖开关也不会支持它。
+请在隔离的 Python 3.11 / conda 环境中按
+[上游安装说明](https://github.com/MIT-SPARK/VGGT-SLAM#installation-of-vggt-slam)配置依赖。
+上游 `setup.sh` 会继续下载第三方仓库并安装包，包括用于可选对象检测的依赖；
+运行前应检查脚本、硬件要求、各依赖和模型许可。
+本次只核验了源代码、文档和目录集成，未执行该安装脚本、下载权重或进行算法 benchmark。
+
 ## 使用
 
 ```bash

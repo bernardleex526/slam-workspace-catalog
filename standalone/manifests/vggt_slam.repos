@@ -1,0 +1,5 @@
+repositories:
+  vggt-slam:
+    type: git
+    url: https://github.com/MIT-SPARK/VGGT-SLAM.git
+    version: main

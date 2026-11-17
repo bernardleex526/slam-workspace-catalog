@@ -15,7 +15,9 @@
 - [`ros2/`](ros2/)：官方或上游明确支持 ROS 2 的项目，包括 GLIM、KISS-ICP、
   MOLA、DLIO ROS 2、RTAB-Map、SLAM Toolbox、robot_localization、Nav2 与 Autoware。
 - [`standalone/`](standalone/)：没有官方 ROS wrapper、但算法本身值得保留的项目
-  （当前为 KISS-SLAM）。
+  （包括 KISS-SLAM、VGGT-SLAM 2.0；后者须按上游流程安装）。
+- [`research/`](research/)：按研究方向整理的新论文、代码发布状态和来源；未发布代码
+  的论文不进入 workspace 清单。
 - [`common/scripts/`](common/scripts/)：三个目录共用的 `catalog.sh` / `list.sh` 以及
   ros2、standalone 共用的 `fetch.sh` / `lock.sh` 实现；各目录 `scripts/` 下保留同名薄封装，
   命令用法不变。
@@ -172,3 +174,15 @@ lock 文件命名/ignore 策略。CI 见 [`.github/workflows/ci.yml`](.github/wo
 
 `catalog.tsv` 中的 `heavy`、`custom` 标记表示需要遵循上游专用安装流程，不能假设
 通用编译脚本一定完成全部依赖安装。
+
+## 论文与代码跟踪
+
+首次检索：2026-11-17。研究索引见 [research/README.md](research/README.md)。
+本轮加入 VGGT-SLAM 2.0 的 standalone 清单及 manifest；追踪 Map2SLAM、Spade-SLAM
+两篇近期论文的代码发布状态，并记录 MASt3R-SLAM 的非商业许可限制。
+这是首次补录，不代表这些项目均在今日发表，也不代表穷尽最新工作。
+
+维护时以论文、作者项目页和官方代码库为依据，区分论文日期、代码状态与核验日期。
+新增可获取源码项目必须同步更新 catalog、manifest 和说明；代码尚未发布、许可不明确
+或仅有社区移植的候选先进入研究索引。无新信息时不重复添加，不以每日数量为目标。
+目录检查不等于算法运行验证；性能结论须注明来自作者，不能写成本仓库评测结果。
