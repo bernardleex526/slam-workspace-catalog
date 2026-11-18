@@ -12,7 +12,7 @@ PCL 和消息包之间的版本冲突。
 
 | 类别 | 算法 |
 |---|---|
-| LiDAR + IMU | FAST-LIO2、LIO-SAM、Point-LIO、Faster-LIO、DLIO、SC-LIO-SAM、PV-LIO |
+| LiDAR + IMU | FAST-LIO2、LIO-SAM、Point-LIO、Faster-LIO、DLIO、SC-LIO-SAM、PV-LIO、GenZ-LIO |
 | LiDAR + Camera + IMU | FAST-LIVO2、R3LIVE、R2LIVE、LVI-SAM、MINS |
 | LiDAR / 图优化 | HDL Graph SLAM、Cartographer、LeGO-LOAM、A-LOAM |
 | Visual + IMU | VINS-Fusion、OpenVINS、Kimera-VIO |
@@ -180,3 +180,17 @@ bash scripts/fetch.sh rog_map
   下载后应按上游说明编译（catalog 标记 `custom`），不保证通用
   `scripts/build.sh` 直接成功。
 - ROG-Map 是面向规划的三维占据地图后端，不负责估计机器人位姿。
+
+## GenZ-LIO（2026-11-18 收录）
+
+[官方仓库](https://github.com/cocel-postech/genz-lio)提供 Noetic / Humble / Jazzy
+接口，许可为 GPL-2.0。`bash scripts/fetch.sh genz_lio` 获取完整 `master` 源码；
+ROS 包位于 `ros/`，CMake 直接引用同仓库 `cpp/genz_lio`，不能只下载 ROS 子目录。
+
+标为 `custom`：请使用[上游安装与构建说明](https://github.com/cocel-postech/genz-lio#readme)，
+而非假设本目录的 workspace-wide 构建与 rosdep 已覆盖全部依赖。ROS 2 上游使用
+`colcon build --packages-select genz_lio`；本轮未编译或运行算法，未生成 exact lock。
+
+PointCloud2 + IMU 输入不需要 Livox 驱动；CustomMsg 才需匹配的可选驱动。
+Livox ROS 2 驱动构建会清理其 workspace 的 build/install，请用独立工作区，
+不要把该驱动构建脚本放到已有算法工作区运行。默认标定参数须针对传感器重新核对。

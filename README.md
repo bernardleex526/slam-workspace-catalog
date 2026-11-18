@@ -178,7 +178,7 @@ lock 文件命名/ignore 策略。CI 见 [`.github/workflows/ci.yml`](.github/wo
 ## 论文与代码跟踪
 
 首次检索：2026-11-17。研究索引见 [research/README.md](research/README.md)。
-本轮加入 VGGT-SLAM 2.0 的 standalone 清单及 manifest；追踪 Map2SLAM、Spade-SLAM
+2026-11-17 加入 VGGT-SLAM 2.0 的 standalone 清单及 manifest；追踪 Map2SLAM、Spade-SLAM
 两篇近期论文的代码发布状态，并记录 MASt3R-SLAM 的非商业许可限制。
 这是首次补录，不代表这些项目均在今日发表，也不代表穷尽最新工作。
 
@@ -186,3 +186,12 @@ lock 文件命名/ignore 策略。CI 见 [`.github/workflows/ci.yml`](.github/wo
 新增可获取源码项目必须同步更新 catalog、manifest 和说明；代码尚未发布、许可不明确
 或仅有社区移植的候选先进入研究索引。无新信息时不重复添加，不以每日数量为目标。
 目录检查不等于算法运行验证；性能结论须注明来自作者，不能写成本仓库评测结果。
+
+### 2026-11-18 更新
+
+- 新增 GenZ-LIO 的 ROS1/ROS2 目录与 manifest（官方 Noetic/Humble/Jazzy，GPL-2.0，
+  custom 构建）；保留嵌套 ROS 包所需的完整仓库，说明可选 Livox 驱动的隔离要求。
+- 研究索引新增 2026-11-16 的 sqrtVINS-Based 360 挑战赛技术报告，并补录 LIN-SLAM
+  待发布代码状态。二者未核实完整官方实现，不创建工作区清单。
+- GenZ-LIO 与 LIN-SLAM 是此前工作的补录，不是今日新发表；本轮只做目录检查，
+  未编译、运行或独立评测上游算法。

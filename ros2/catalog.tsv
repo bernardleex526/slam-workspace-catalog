@@ -13,3 +13,4 @@ beluga	2D LiDAR(+3D OpenVDB)	Monte Carlo localization	Official ROS1/ROS2	generic
 isaac_ros_nvblox	Depth Camera/3D LiDAR+Pose	TSDF/ESDF/mesh/Nav2 costmap	Official ROS2	custom	manifests/isaac_ros_nvblox.repos	NVIDIA GPU and Isaac ROS environment required; mapping backend, not SLAM
 easynavigation	2D/3D/Hybrid maps	localization/planning/control	Official ROS2	generic	manifests/easynavigation.repos	Emerging Nav2 alternative with Kobuki and Summit simulation playgrounds
 opennav_coverage	2D map/GNSS	complete coverage navigation	Official ROS2/Nav2 extension	generic	manifests/opennav_coverage.repos	Nav2 task server for cleaning, mowing, inspection and agricultural coverage
+genz_lio	LiDAR+IMU	odometry/mapping	Official ROS2 Humble/Jazzy	custom	manifests/genz_lio.repos	GPL-2.0; full checkout with nested ros package; use upstream selected-package build; not locally built

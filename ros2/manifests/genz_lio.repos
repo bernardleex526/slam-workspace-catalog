@@ -1,0 +1,5 @@
+repositories:
+  genz-lio:
+    type: git
+    url: https://github.com/cocel-postech/genz-lio.git
+    version: master

@@ -14,7 +14,7 @@
 | 类别 | 项目 |
 |---|---|
 | LiDAR | KISS-ICP |
-| LiDAR + IMU | GLIM、DLIO ROS 2、MOLA |
+| LiDAR + IMU | GLIM、DLIO ROS 2、MOLA、GenZ-LIO |
 | RGB-D / Stereo / LiDAR | RTAB-Map ROS 2 |
 | 2D建图与定位 | SLAM Toolbox |
 | 状态融合 | robot_localization |
@@ -202,3 +202,17 @@ bash scripts/fetch.sh opennav_coverage
   EasyNav 作为 GridMap、OctoMap、点云或混合地图导航预研。
 - OpenNav Coverage 是 Nav2 扩展，适用于清扫、割草、喷洒、巡检和农田全覆盖，
   不是 Nav2 的替代品。
+
+## GenZ-LIO（2026-11-18 收录）
+
+[官方仓库](https://github.com/cocel-postech/genz-lio)提供 Noetic / Humble / Jazzy
+接口，许可为 GPL-2.0。`bash scripts/fetch.sh genz_lio` 获取完整 `master` 源码；
+ROS 包位于 `ros/`，CMake 直接引用同仓库 `cpp/genz_lio`，不能只下载 ROS 子目录。
+
+标为 `custom`：请使用[上游安装与构建说明](https://github.com/cocel-postech/genz-lio#readme)，
+而非假设本目录的 workspace-wide 构建与 rosdep 已覆盖全部依赖。ROS 2 上游使用
+`colcon build --packages-select genz_lio`；本轮未编译或运行算法，未生成 exact lock。
+
+PointCloud2 + IMU 输入不需要 Livox 驱动；CustomMsg 才需匹配的可选驱动。
+Livox ROS 2 驱动构建会清理其 workspace 的 build/install，请用独立工作区，
+不要把该驱动构建脚本放到已有算法工作区运行。默认标定参数须针对传感器重新核对。
