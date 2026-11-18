@@ -1,14 +1,19 @@
-# SLAM Algorithm Workspace Catalog
+# Robotics Algorithm Catalog · SLAM Workspaces
 
-按需获取、隔离编译、可复现地管理开源 SLAM、定位与导航项目的 **workspace catalog**
-仓库。
+机器人算法选型与研究导航，覆盖 **VLN、世界模型、建图、导航、定位、VLA 与运动控制**。
+同时保留按需获取、隔离编译的 SLAM **workspace catalog**，不复制第三方源码。
 
-> 说明：本仓库是一个源码工作区目录（catalog + manifests + 管理脚本），
+👉 **先看 [机器人算法分类导航](robotics/README.md)**：27 个代表性入口，说明用途、许可、接入前提与限制。
+新领域默认以链接和说明收录，不要求下载完整仓库。原 ROS 1 / ROS 2 / standalone 脚本用法不变。
+
+> 说明：本仓库包含算法链接导航，以及源码工作区目录（catalog + manifests + 管理脚本），
 > **不是** 基准评测套件。当前没有内置 rosbag/MCAP 数据集、指标计算或结果报告，
 > 也**不宣称**任何算法已在本仓库完成 bag/metrics benchmark。
 > 未来评测框架的接口契约见 [评测接口契约（规划）](#评测接口契约规划)。
 
 ## 目录
+
+- [`robotics/`](robotics/README.md)：跨领域机器人算法链接导航与选型说明，含成熟基线和近期具身模型。
 
 - [`ros1/`](ros1/)：ROS 1 Noetic 项目，包括 FAST-LIO2、FAST-LIVO2、LIO-SAM、
   Point-LIO、R3LIVE、LVI-SAM 等。

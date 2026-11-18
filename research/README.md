@@ -1,4 +1,6 @@
-# SLAM 论文与代码跟踪
+# 机器人论文与代码跟踪
+
+常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
 最新检索日期：2026-11-18；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
@@ -31,7 +33,8 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 ## 后续分类与纳入标准
 
-- 方向：LiDAR / LiDAR-inertial、visual / visual-inertial、RGB-D、multi-sensor、
+- 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
+- SLAM 方向：LiDAR / LiDAR-inertial、visual / visual-inertial、RGB-D、multi-sensor、
   dense / neural / Gaussian mapping、multi-agent、loop closure / relocalization。
   无已核实条目的方向暂不创建空表，也不把视觉论文误归入 LiDAR 类。
 - 每项至少保留论文或官方来源、传感器/任务类别、论文日期、官方代码链接与发布状态、核验日期。
