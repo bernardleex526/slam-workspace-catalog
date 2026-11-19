@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-18；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-19；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -31,6 +31,15 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 |---|---|---|---|---|
 | [sqrtVINS-Based 360 Visual-Inertial SLAM Systems: Hilti-Trimble SLAM Challenge 2026 Entry](https://arxiv.org/abs/2611.20568)，Jungwoo Lee、Hogyun Kim、Jiwon Choi、Jinyong Jeong、Younggun Cho | 2026-11-16 v1，挑战赛技术报告 / arXiv 预印本 | 双鱼眼+IMU，sqrtVINS 前端、视觉回环与 GTSAM 因子图后端 | 本轮未核实完整参赛系统的官方公开仓库；底层 sqrtVINS 不等于完整系统 | 仅论文追踪；[正文](https://arxiv.org/html/2611.20568v1)说明后续观测会修改历史位姿，导出轨迹是非因果的，不据此宣称在线实时性能 |
 
+## VLN / 世界模型与动作策略（核验 2026-11-19）
+
+| 工作 / 作者 | 日期 / 状态 | 核心贡献与适用方向 | 代码与验证边界 |
+|---|---|---|---|
+| [Learning and Verifying Progress: Closed-Loop Agentic Planning with Progress-Enhanced Execution for Long-Horizon Vision-Language Navigation（LeaP-VLN）](https://arxiv.org/abs/2611.20676)，Kangjie Zhou 等 | 2026-11-16 v1，arXiv 预印本 | 将进度感知执行器和独立进度验证结合，在计划、执行、验证、恢复闭环中处理长程导航误差；[原文](https://arxiv.org/html/2611.20676v1) | 本轮未核实完整官方公开实现与代码许可，先作论文链接；作者仿真/真机结果未在本目录复现 |
+| [Progress Predicts Policy（PPP）](https://arxiv.org/abs/2611.22491)，Licheng Zhong、Gim Hee Lee | 2026-11-17 v1，arXiv 预印本 | 将语言条件进度场与共享世界模型组合，用梯度读取连续动作、有限差分读取离散动作，研究不依赖独立动作头的操作策略；[原文](https://arxiv.org/html/2611.22491v1) | 本轮未核实完整官方公开代码与许可；进度梯度没有稳定性或物理进展保证，不能将论文结果推断为安全控制保证 |
+
+本轮以论文提交日期为准，不将聚合站的收录日期当作发表日期。以上仅收录研究链接，不创建 manifest。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -50,3 +59,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
   补录 VGGT-SLAM 2.0 工作区条目，并单独注明 MASt3R-SLAM 的非商业许可限制。
 
 - 2026-11-18：新增 11 月 16 日的 360 视觉惯性技术报告；补录 GenZ-LIO 和 LIN-SLAM。GenZ-LIO 同步加入 ROS1/ROS2 清单，不将较早工作称为今日新发布。
+
+- 2026-11-19：新增 LeaP-VLN 与 PPP 研究链接；在机器人导航中补录 LeRobot v0.7.0。保留原条目，不把所有领域强行凑成每日新增。
