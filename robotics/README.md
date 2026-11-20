@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-19**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-20**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -46,6 +46,7 @@
 | [GLIM](https://github.com/koide3/glim) | 点云因子图定位建图，可选 GPU 加速；适合高质量 3D 地图工作流。 | MIT | 已有 ROS 2 工作区；GTSAM/gtsam_points、CUDA 与扩展模块需按版本匹配。 |
 | [RTAB-Map](https://github.com/introlab/rtabmap) | RGB-D/双目/LiDAR 图优化 SLAM，多会话与定位工作流。 | BSD（见 LICENSE） | ROS 接口在 rtabmap_ros；不要把核心库安装等同于完整机器人集成。 |
 | [SLAM Toolbox](https://github.com/SteveMacenski/slam_toolbox) | 2D LiDAR 位姿图 SLAM、继续建图及定位；ROS 2 地面导航入口。 | LGPL-2.1 | 已有工作区；不是 3D SLAM，长期建图模式的资源和实验性限制看上游。 |
+| [SE(3)-LIVOM](https://github.com/url-kaist/se3-livom-comfort) | 双 LiDAR、相机与 IMU 融合，结合自适应降采样与在线位姿图后端；适合比较腿式机器人离线包回放结果。 | [GPL-2.0](https://github.com/url-kaist/se3-livom-comfort/blob/master/LICENSE) | 上游提供 GrandTour 与 ROS 1 Noetic Docker 流程；不是 ROS 2 Humble 工作区，需注意峰值内存。 |
 
 ## 定位与状态估计
 
@@ -56,6 +57,7 @@
 | [robot_localization](https://github.com/cra-ros-pkg/robot_localization) | EKF/UKF 融合轮速、IMU、GNSS/里程计；估计机器人状态。 | BSD（见 LICENSE） | 已有 ROS 2 工作区；不生成地图，必须配置协方差、坐标系和时间戳。 |
 | [AMCL（Nav2）](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl) | 粒子滤波的 2D 激光地图定位；适合已有栅格地图。 | 按包 LICENSE/package.xml | Nav2 的组成模块，不是另一个独立导航栈；检查初始位姿和激光模型。 |
 | [Hierarchical Localization / hloc](https://github.com/cvg/Hierarchical-Localization) | 图像检索、局部特征匹配及几何定位；用于视觉重定位研究。 | Apache-2.0 | 需参考图像/重建地图；特征模型及权重条款独立，不是开箱即用的在线里程计。 |
+| [Pelorus](https://codeberg.org/stelzo/pelorus) | 固定容量局部地图的 LIO，适合评估嵌入式资源开销；不含全局回环。 | [MIT](https://codeberg.org/stelzo/pelorus/raw/branch/main/LICENSE-MIT) 或 [Apache-2.0](https://codeberg.org/stelzo/pelorus/raw/branch/main/LICENSE-APACHE) | 上游提供 [ROS 2 入口](https://pelorus.steado.tech/docs/ros/)，声明支持 Humble/Jazzy/Lyrical；也有独立 MCAP 回放，未实测。 |
 
 ## 导航与运动规划
 
@@ -66,6 +68,7 @@
 | [Nav2（Smac / MPPI / RPP）](https://github.com/ros-navigation/navigation2) | ROS 2 导航系统，整合全局规划、控制器、行为树和恢复；工程选型入口。 | 多许可，按包核验 | Smac、MPPI、Regulated Pure Pursuit 是不同插件路线；需要地图/定位、costmap、TF 和底盘接口。 |
 | [MoveIt 2](https://github.com/moveit/moveit2) | 机械臂运动规划、运动学与碰撞检测框架；连接规划器和控制器。 | BSD-3-Clause（依赖另计） | 选择对应 ROS 发行版分支；需要 URDF/SRDF、关节约束和控制器。 |
 | [cuRobo](https://github.com/NVlabs/curobo) | CUDA 加速的机器人运动生成，适合并行 IK、碰撞感知轨迹规划。 | Apache-2.0（当前主分支） | 需要兼容 NVIDIA GPU/CUDA 与机器人碰撞模型；不是完整导航/底层伺服栈。 |
+| [RPV ObjectNav 桥接](https://github.com/Matthew-K-Chua/rpv-ros2-bridge) / [策略](https://github.com/Matthew-K-Chua/rpv-sim2real-policy) | 以房间语义给探索边界打分，生成 Nav2 目标；是按物体类别搜索，不是跟随多步语言指令或直接控制电机。 | 两个仓库源码 MIT；模型权重与外部依赖另核 | 作者采用 ROS 2 Humble / Nav2 / SLAM Toolbox 和外部 GPU；Spot 有试验，TurtleBot 4 为迁移演示，未在本目录复现。 |
 
 ## VLN：视觉语言导航
 
@@ -137,4 +140,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 2026-11-18：扩展为机器人跨领域导航，共 **27 个入口**（其中 2 个为配套仿真平台）。
 保留原 SLAM 工作区；本次只新增本导航文档、来源快照并更新入口说明，不下载第三方源码。
 
-2026-11-19：补录 LeRobot v0.7.0 工具生态入口，当前共 **28 个入口**（含 2 个配套仿真平台）。这是 11 月 5 日发布的版本，不是今日新发布。
+2026-11-19：补录 LeRobot v0.7.0 工具生态入口，当时共 **28 个入口**（含 2 个配套仿真平台）。这是 11 月 5 日发布的版本，不是今日新发布。
+
+2026-11-20：新增 SE(3)-LIVOM、Pelorus、RPV ObjectNav 共 3 个项目入口，当前共 **31 个入口**（含 2 个配套仿真平台）。论文日期、验证条件与代码状态见 [研究索引](../research/README.md)。

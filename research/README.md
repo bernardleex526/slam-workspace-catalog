@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-19；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-20；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -40,6 +40,27 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 本轮以论文提交日期为准，不将聚合站的收录日期当作发表日期。以上仅收录研究链接，不创建 manifest。
 
+## 多传感器里程计与建图（核验 2026-11-20）
+
+| 工作 | 论文日期 / 出处 | 核心思路 | 官方代码状态 | 验证边界 |
+|---|---|---|---|---|
+| [SE(3)-LIVOM: Adaptive Multi-LiDAR-Inertial-Visual Odometry and Mapping](https://arxiv.org/abs/2611.22047)，Gunhee Shin 等 | 2026-11-17 v1，挑战赛技术报告 / arXiv 预印本 | 多 LiDAR、相机与 IMU 融合，自适应降采样、子图平面优化及增量位姿图 | [官方代码](https://github.com/url-kaist/se3-livom-comfort)已公开，GPL-2.0，有 ROS 1 Noetic Docker 回放流程 | IROS 2026 COMFORT 挑战赛冠军；[论文](https://arxiv.org/html/2611.22047v1)报告 GrandTour 6 个测试场景平均 ATE 为 1.40 cm。CON-4 有 10 帧扫描超过 100 ms、峰值内存 16.7 GB；不能据此保证其他硬件实时。 |
+| [Pelorus: Resource-Aware Lidar-Inertial Odometry](https://arxiv.org/abs/2611.22850)，Charlotte Sieh、Mario Porrmann | 2026-11-17 v1，arXiv 预印本 | 固定容量多分辨率局部地图、按相关性淘汰体素与等变状态估计；含 CUDA、Vulkan、Metal 后端 | [官方代码](https://codeberg.org/stelzo/pelorus)已公开，MIT 或 Apache-2.0；[作者 ROS 2 文档](https://pelorus.steado.tech/docs/ros/) | [论文](https://arxiv.org/html/2611.22850v1)表 II：Orin NX 单个 HeLiPR town02:ouster 序列，CUDA 加 4 个 CPU 线程处理 100% 扫描，p95 处理时长 78.1 ms、p95 端到端延迟 173 ms。LIO 不等于带回环的全局 SLAM。 |
+
+## 语义导航 / ObjectNav（核验 2026-11-20）
+
+| 工作 | 论文日期 / 出处 | 核心思路 | 官方代码与验证边界 |
+|---|---|---|---|
+| [Sim-to-Real Room-Mediated Object-Goal Navigation with ROS 2 and Nav2](https://arxiv.org/abs/2611.19720)，Matthew Chua、Adam Scicluna、Gavin Paul | 2026-11-15 v1；作者标注 ACRA 2026 已接收 | 既有 RPV 策略的实机迁移：房间语义对探索边界打分并向 Nav2 提交导航目标，不输出电机指令 | [ROS 2 桥接](https://github.com/Matthew-K-Chua/rpv-ros2-bridge)与[策略](https://github.com/Matthew-K-Chua/rpv-sim2real-policy)已公开，源码 MIT；SAM 3/YOLOE 等外部权重另核。[论文](https://arxiv.org/html/2611.19720v1)报告 Spot 在单一场地 30/66 次成功，TurtleBot 4 是独立迁移演示。默认启动与论文实验的感知配置不同。 |
+
+## VLA / 潜空间世界模型（核验 2026-11-20）
+
+| 工作 | 论文日期 / 出处 | 核心思路 | 官方代码状态与边界 |
+|---|---|---|---|
+| [Z-sight: Unifying Vision-Language-Action and Latent World Modeling](https://arxiv.org/abs/2611.24940)，Junjie Ye 等 | 2026-11-18 v1，arXiv 预印本 | 在 VLM 自身视觉表示空间共同预测未来视觉 token 和连续动作，不生成像素视频 | [作者项目页](https://junjieye.com/Z-sight/)提供演示，所指代码链接在本轮核验返回 404，代码、权重和许可未核实，仅追踪[论文](https://arxiv.org/html/2611.24940v1)；作者真机结果未复现。 |
+
+本轮均为链接收录，不新增 manifest，不构建或运行上游算法。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -61,3 +82,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-18：新增 11 月 16 日的 360 视觉惯性技术报告；补录 GenZ-LIO 和 LIN-SLAM。GenZ-LIO 同步加入 ROS1/ROS2 清单，不将较早工作称为今日新发布。
 
 - 2026-11-19：新增 LeaP-VLN 与 PPP 研究链接；在机器人导航中补录 LeRobot v0.7.0。保留原条目，不把所有领域强行凑成每日新增。
+
+- 2026-11-20：新增 SE(3)-LIVOM、Pelorus、RPV ObjectNav 公开代码及论文入口；新增 Z-sight 论文追踪（代码未核实）。

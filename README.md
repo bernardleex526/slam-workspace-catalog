@@ -3,7 +3,7 @@
 机器人算法选型与研究导航，覆盖 **VLN、世界模型、建图、导航、定位、VLA 与运动控制**。
 同时保留按需获取、隔离编译的 SLAM **workspace catalog**，不复制第三方源码。
 
-👉 **先看 [机器人算法分类导航](robotics/README.md)**：28 个代表性入口，说明用途、许可、接入前提与限制。
+👉 **先看 [机器人算法分类导航](robotics/README.md)**：31 个选型入口，说明用途、许可、接入前提与限制。
 新领域默认以链接和说明收录，不要求下载完整仓库。原 ROS 1 / ROS 2 / standalone 脚本用法不变。
 
 > 说明：本仓库包含算法链接导航，以及源码工作区目录（catalog + manifests + 管理脚本），
@@ -12,6 +12,8 @@
 > 未来评测框架的接口契约见 [评测接口契约（规划）](#评测接口契约规划)。
 
 ## 最新维护
+
+- 2026-11-20：新增 SE(3)-LIVOM、Pelorus 和 RPV 实机 ObjectNav 的官方代码入口；研究索引另追踪 Z-sight（代码未核实）。均未新增安装清单，详见 [研究追踪](research/README.md)。
 
 - 2026-11-19：补录 LeRobot v0.7.0；研究索引新增 LeaP-VLN 与 Progress Predicts Policy 两篇近期预印本。代码未核实的论文不当作可运行开源算法。详见 [研究追踪](research/README.md)。
 
