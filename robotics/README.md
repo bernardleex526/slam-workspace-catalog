@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-20**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-21**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -47,6 +47,7 @@
 | [RTAB-Map](https://github.com/introlab/rtabmap) | RGB-D/双目/LiDAR 图优化 SLAM，多会话与定位工作流。 | BSD（见 LICENSE） | ROS 接口在 rtabmap_ros；不要把核心库安装等同于完整机器人集成。 |
 | [SLAM Toolbox](https://github.com/SteveMacenski/slam_toolbox) | 2D LiDAR 位姿图 SLAM、继续建图及定位；ROS 2 地面导航入口。 | LGPL-2.1 | 已有工作区；不是 3D SLAM，长期建图模式的资源和实验性限制看上游。 |
 | [SE(3)-LIVOM](https://github.com/url-kaist/se3-livom-comfort) | 双 LiDAR、相机与 IMU 融合，结合自适应降采样与在线位姿图后端；适合比较腿式机器人离线包回放结果。 | [GPL-2.0](https://github.com/url-kaist/se3-livom-comfort/blob/master/LICENSE) | 上游提供 GrandTour 与 ROS 1 Noetic Docker 流程；不是 ROS 2 Humble 工作区，需注意峰值内存。 |
+| [lidar_slam v0.12.0](https://github.com/rsasaki0109/lidar_slam/releases/tag/v0.12.0) | 以 RKO-LIO 和离线图优化将 rosbag2 转为 Autoware 兼容点云地图。 | [项目代码 BSD-2-Clause](https://raw.githubusercontent.com/rsasaki0109/lidar_slam/v0.12.0/LICENSE)；依赖另计 | 上游支持 ROS 2 Humble/Jazzy；[无需 ROS 2 的离线核心](https://pypi.org/project/lidarslam/0.12.0/)是预览，官方 wheel 为 Linux。 |
 
 ## 定位与状态估计
 
@@ -69,6 +70,7 @@
 | [MoveIt 2](https://github.com/moveit/moveit2) | 机械臂运动规划、运动学与碰撞检测框架；连接规划器和控制器。 | BSD-3-Clause（依赖另计） | 选择对应 ROS 发行版分支；需要 URDF/SRDF、关节约束和控制器。 |
 | [cuRobo](https://github.com/NVlabs/curobo) | CUDA 加速的机器人运动生成，适合并行 IK、碰撞感知轨迹规划。 | Apache-2.0（当前主分支） | 需要兼容 NVIDIA GPU/CUDA 与机器人碰撞模型；不是完整导航/底层伺服栈。 |
 | [RPV ObjectNav 桥接](https://github.com/Matthew-K-Chua/rpv-ros2-bridge) / [策略](https://github.com/Matthew-K-Chua/rpv-sim2real-policy) | 以房间语义给探索边界打分，生成 Nav2 目标；是按物体类别搜索，不是跟随多步语言指令或直接控制电机。 | 两个仓库源码 MIT；模型权重与外部依赖另核 | 作者采用 ROS 2 Humble / Nav2 / SLAM Toolbox 和外部 GPU；Spot 有试验，TurtleBot 4 为迁移演示，未在本目录复现。 |
+| [ROAM](https://github.com/leggedrobotics/roam) | 用 VLM 分析地形，再以开放词汇分割生成风险与可通行图，供腿式导航使用。 | [公开代码 MIT](https://github.com/leggedrobotics/roam#license)；模型依赖另计 | 公开仓库覆盖语义感知及 ROS 接口，不是论文整套运动控制栈；上游实地测试使用云端 VLM。 |
 
 ## VLN：视觉语言导航
 
@@ -105,6 +107,7 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 | [DreamerV3](https://github.com/danijar/dreamerv3) | 学习潜在动力学并在想象轨迹中优化策略；世界模型强化学习基线。 | MIT | 官方训练实现与配置；不是现成通用机器狗策略，训练与评估任务须自行定义。 |
 | [V-JEPA 2 / 2-AC / 2.1](https://github.com/facebookresearch/vjepa2) | 视频预测表征；2-AC 是动作条件潜在模型，用于研究操作规划。 | 主体 MIT；部分文件 Apache-2.0 | 按模型卡选择；普通视频编码器、2-AC 与 2.1 的功能不同，不能混写成一个控制器。 |
 | [NVIDIA Cosmos 3](https://github.com/NVIDIA/cosmos) | 面向物理 AI 的世界基础模型平台，提供预测、生成与推理工作流。 | 当前代码/模型 OpenMDW-1.1 | 这是当前主入口，不沿用旧 Predict2 许可；第三方安全过滤器/模型条款另核。 |
+| [WAM-Policy](https://github.com/AIGeeksGroup/WAM-Policy) | 将机械臂世界动作模型迁移到四足机器人的行走与前足操作，蒸馏为少步策略。 | 代码和[发布权重](https://huggingface.co/AIGeeksGroup/WAM-Policy) Apache-2.0；QLM-Bench 代码和数据 CC BY-NC 4.0 | 高层动作交由全身控制器执行；作者的 85% 是仿真成绩，不是真机结果。 |
 
 ## 运动控制与运动学习
 
@@ -142,4 +145,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 
 2026-11-19：补录 LeRobot v0.7.0 工具生态入口，当时共 **28 个入口**（含 2 个配套仿真平台）。这是 11 月 5 日发布的版本，不是今日新发布。
 
-2026-11-20：新增 SE(3)-LIVOM、Pelorus、RPV ObjectNav 共 3 个项目入口，当前共 **31 个入口**（含 2 个配套仿真平台）。论文日期、验证条件与代码状态见 [研究索引](../research/README.md)。
+2026-11-20：新增 SE(3)-LIVOM、Pelorus、RPV ObjectNav 共 3 个项目入口，当时共 **31 个入口**（含 2 个配套仿真平台）。论文日期、验证条件与代码状态见 [研究索引](../research/README.md)。
+
+2026-11-21：加入 WAM-Policy、ROAM、lidar_slam v0.12.0，当前共 **34 个入口**（含 2 个配套仿真平台）。未新增 workspace manifest。

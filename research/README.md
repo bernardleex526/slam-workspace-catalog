@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-20；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-21；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -61,6 +61,17 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 本轮均为链接收录，不新增 manifest，不构建或运行上游算法。
 
+## 世界动作模型、腿式导航与离线建图（核验 2026-11-21）
+
+| 工作 | 论文 / 发布日期 | 核心思路 | 官方代码、许可与验证边界 |
+|---|---|---|---|
+| [WAM-Policy: World Action Models with On-Policy Distillation for Quadrupedal Loco-Manipulation](https://arxiv.org/abs/2611.24011)，Junlin Long 等 | 2026-11-18 v1，arXiv 预印本 | 将 LingBot-VA 适配四足机器人，先在策略分布上自蒸馏，再用强化学习专家与多教师蒸馏改进操作 | [训练及评估代码](https://github.com/AIGeeksGroup/WAM-Policy)和[作者权重](https://huggingface.co/AIGeeksGroup/WAM-Policy)分别为 Apache-2.0；[QLM-Bench 基准分支许可](https://raw.githubusercontent.com/AIGeeksGroup/WAM-Policy/qlm-bench/LICENSE)与[数据](https://huggingface.co/datasets/AIGeeksGroup/QLM-Bench)另用 CC BY-NC 4.0。[原文](https://arxiv.org/html/2611.24011v1)报告第二阶段在 10 个仿真任务得 85.0%；第一阶段 Go2 Air 真机 3 个任务共成功 7/30。真机采样 0.159 s/段，含观测编码的闭环为 0.66 s，不是同一时延。 |
+| [ROAM: Bridging vision-language reasoning and learned control for legged navigation in the wild](https://arxiv.org/abs/2611.25215)，Takahiro Miki 等 | Science Robotics 2026；作者版 2026-11-18 提交 arXiv | VLM 推断语义地形风险，开放词汇分割生成像素图并融合进高程图，供学习型局部导航及运动策略使用 | [官方 MIT 仓库](https://github.com/leggedrobotics/roam)覆盖 VLM、分割与 ROS 接口，不包含实验整套学习控制系统。[原文](https://arxiv.org/html/2611.25215v1)记录云端 VLM 依赖及人工干预，不能据此推定所有地形无干预可通行。 |
+| [lidar_slam v0.12.0](https://github.com/rsasaki0109/lidar_slam/releases/tag/v0.12.0)，Ryohei Sasaki 等维护 | 2026-11-17 发布，本轮补录 | RKO-LIO、离线位姿图与地图导出；新增无需 ROS 2 即可处理 rosbag2 的离线核心预览 | 仓库代码 BSD-2-Clause；[PyPI](https://pypi.org/project/lidarslam/0.12.0/)提供 Linux x86_64/aarch64 的 Python 3.10–3.13 wheel。[发布说明](https://rsasaki0109.github.io/lidar_slam/releases/v0.12.0.html)注明仍有一项精度场景未测，不据此宣称所有数据通过验证。 |
+| [Vision-Language Grounded Semantic Navigation for Autonomous Mobile Robots](https://arxiv.org/abs/2611.20558)，Ravindran Vasoor Saravanan 等 | 2026-11-16 v1，arXiv 预印本 | Grounding DINO、深度定位、边界探索和 Nav2 组合；用规则解析物体级短指令，不是长程指令式 VLN | [作者仓库](https://github.com/Ravindran127/Vision-Language-Grounded-Semantic-Navigation-for-Autonomous-Mobile-Robots)可访问，但当前缺核心源码、启动及配置目录，暂作论文追踪。[原文](https://arxiv.org/html/2611.20558v1)只报告单一 Gazebo 场景，检测 3/5 目标、成功执行 2/2 条测试指令，未验证真机。 |
+
+新增条目均为链接，不安装或运行上游算法。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -84,3 +95,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-19：新增 LeaP-VLN 与 PPP 研究链接；在机器人导航中补录 LeRobot v0.7.0。保留原条目，不把所有领域强行凑成每日新增。
 
 - 2026-11-20：新增 SE(3)-LIVOM、Pelorus、RPV ObjectNav 公开代码及论文入口；新增 Z-sight 论文追踪（代码未核实）。
+
+- 2026-11-21：新增 WAM-Policy、ROAM、lidar_slam v0.12.0 及一项语义导航论文追踪；区分仿真、真机及代码开放范围。
