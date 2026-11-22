@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-21**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-22**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -59,6 +59,7 @@
 | [AMCL（Nav2）](https://github.com/ros-navigation/navigation2/tree/main/nav2_amcl) | 粒子滤波的 2D 激光地图定位；适合已有栅格地图。 | 按包 LICENSE/package.xml | Nav2 的组成模块，不是另一个独立导航栈；检查初始位姿和激光模型。 |
 | [Hierarchical Localization / hloc](https://github.com/cvg/Hierarchical-Localization) | 图像检索、局部特征匹配及几何定位；用于视觉重定位研究。 | Apache-2.0 | 需参考图像/重建地图；特征模型及权重条款独立，不是开箱即用的在线里程计。 |
 | [Pelorus](https://codeberg.org/stelzo/pelorus) | 固定容量局部地图的 LIO，适合评估嵌入式资源开销；不含全局回环。 | [MIT](https://codeberg.org/stelzo/pelorus/raw/branch/main/LICENSE-MIT) 或 [Apache-2.0](https://codeberg.org/stelzo/pelorus/raw/branch/main/LICENSE-APACHE) | 上游提供 [ROS 2 入口](https://pelorus.steado.tech/docs/ros/)，声明支持 Humble/Jazzy/Lyrical；也有独立 MCAP 回放，未实测。 |
+| [I See You](https://github.com/tu-darmstadt-ros-pkg/i-see-you-registration) | 多机器人任务前静止 LiDAR 配准，利用彼此观测排除不可信位姿；不是持续多机 SLAM。 | [代码 MIT](https://raw.githubusercontent.com/tu-darmstadt-ros-pkg/i-see-you-registration/main/LICENSE)；数据另核 | 上游在 Ubuntu 24.04 / ROS 2 Jazzy 测试；需重力对齐扫描与不同机器人坐标帧。未复现。 |
 
 ## 导航与运动规划
 
@@ -128,6 +129,7 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 |---|---|---|---|
 | [Isaac Lab](https://github.com/isaac-sim/IsaacLab) | 机器人强化/模仿学习的统一仿真训练框架；新腿式学习项目的重要入口。 | 主体 BSD-3-Clause；mimic 扩展 Apache-2.0；仿真器/资产另计 | 检查后端、GPU、操作系统及资产依赖；不能把训练成功当作 sim-to-real 已通过。 |
 | [MuJoCo Playground](https://github.com/google-deepmind/mujoco_playground) | 基于 MuJoCo 的机器人学习环境及仿真/真实示例。 | Apache-2.0（外部资产另计） | 按官方示例准备加速与模型依赖；任务和真机适配覆盖不是普适保证。 |
+| [LocoMuJoCo v1.2.0](https://github.com/robfiras/loco-mujoco/releases/tag/v1.2.0) | 全身控制的模仿与强化学习基准，覆盖人形、骨骼模型与四足；提供 MuJoCo、MJX、MjWarp 后端。 | [项目代码 MIT](https://raw.githubusercontent.com/robfiras/loco-mujoco/v1.2.0/LICENSE)；数据和模型另核 | 该版本新增 SuperMimicJax，支持 MuJoCo 4；MjWarp 不支持逐环境写入高度场。不是现成真机控制器。 |
 
 ## 持续维护规则
 
@@ -147,4 +149,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 
 2026-11-20：新增 SE(3)-LIVOM、Pelorus、RPV ObjectNav 共 3 个项目入口，当时共 **31 个入口**（含 2 个配套仿真平台）。论文日期、验证条件与代码状态见 [研究索引](../research/README.md)。
 
-2026-11-21：加入 WAM-Policy、ROAM、lidar_slam v0.12.0，当前共 **34 个入口**（含 2 个配套仿真平台）。未新增 workspace manifest。
+2026-11-21：加入 WAM-Policy、ROAM、lidar_slam v0.12.0，当时共 **34 个入口**（含 2 个配套仿真平台）。未新增 workspace manifest。
+
+2026-11-22：加入 LocoMuJoCo v1.2.0 和 I See You，当前共 **36 个入口**（含 3 个配套仿真平台）。

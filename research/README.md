@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-21；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-22；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -72,6 +72,16 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 新增条目均为链接，不安装或运行上游算法。
 
+## 腿式状态估计、多机配准与仿真基准（核验 2026-11-22）
+
+| 工作 | 论文 / 发布日期 | 核心思路 | 官方代码与验证边界 |
+|---|---|---|---|
+| [LocoMuJoCo: A Comprehensive Imitation Learning Benchmark for Whole-Body Control](https://arxiv.org/abs/2611.26293)，Firas Al-Hafez 等 | 2026-11-19 v1，arXiv 预印本；v1.2.0 发布于 2026-11-18 | 统一 MuJoCo CPU、MJX 与 MjWarp GPU 接口开展全身控制实验；新版本加入用可微世界模型训练策略的 SuperMimicJax | [官方版本](https://github.com/robfiras/loco-mujoco/releases/tag/v1.2.0)与 [PyPI 包](https://pypi.org/project/loco-mujoco/1.2.0/)已公开；代码 MIT，AMASS、SMPL 模型等依赖需单独核验条款。未复现训练或验证真机。 |
+| [I See You: Initial Multi-Robot LiDAR Registration with Mutual-Observation Checks](https://arxiv.org/abs/2611.26276)，Jonathan Lichtenfeld、Oskar von Stryk | 2026-11-19 v1；作者标注 IEEE SSRR 2026 接收终稿 | 任务前集中式静止配准，通过互相观测检查拒绝不合理的位姿候选 | [MIT 实现](https://github.com/tu-darmstadt-ros-pkg/i-see-you-registration)提供 ROS 2 Jazzy 示例。[原文](https://arxiv.org/html/2611.26276v1)在四机器人实验中报告，含错误位姿的团队配准次数相对减少 38%，不代表所有场景均适用。数据由作者另发，目录未核实下载与许可。 |
+| [Proprioceptive Simultaneous Base and Terrain Elevation Estimation for Legged Robot Locomotion（SBEE）](https://arxiv.org/abs/2611.24310)，Michael Maravgakis、Stylianos Piperakis、Panos Trahanias | 2026-11-18 v1，arXiv 预印本 | 将浮动基座左不变 EKF 与足端接触高程图双向耦合，抑制垂直漂移；不提供绝对全局位置与航向 | [原文](https://arxiv.org/html/2611.24310v1)报告 296 m ANYmal-D GrandTour 数据上 ATE 为 1.062 m，较最强本体感知对照低 22.1%。正文写明接收后发布实现，现仅追踪论文。 |
+
+链接收录不等于独立复现或部署验证。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -97,3 +107,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-20：新增 SE(3)-LIVOM、Pelorus、RPV ObjectNav 公开代码及论文入口；新增 Z-sight 论文追踪（代码未核实）。
 
 - 2026-11-21：新增 WAM-Policy、ROAM、lidar_slam v0.12.0 及一项语义导航论文追踪；区分仿真、真机及代码开放范围。
+
+- 2026-11-22：新增 LocoMuJoCo v1.2.0 和 I See You 的论文与代码入口；仅论文追踪 SBEE。

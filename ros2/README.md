@@ -21,6 +21,8 @@
 | 导航 | Navigation2 |
 | 自动驾驶 | Autoware |
 
+上游版本提示（2026-11-22 核验）：[MOLA 3.6.0](https://github.com/MOLAorg/mola/releases/tag/3.6.0) 的 [11 月 20 日变更日志](https://docs.mola-slam.org/latest/changelog.html) 记录 `mola_bridge_ros2` 支持按话题设置 `odometry_as_robot_pose_observation`，可将用于平面运动的轮式里程计与 SE(3) 激光或视觉里程计一并融合。本目录仍按既有清单跟踪 `develop`，未在本轮锁定或实测该版本。
+
 状态和用途见 [`catalog.tsv`](catalog.tsv)。
 
 ## 推荐环境
