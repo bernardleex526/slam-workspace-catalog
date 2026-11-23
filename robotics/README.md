@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-22**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-23**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -60,6 +60,8 @@
 | [Hierarchical Localization / hloc](https://github.com/cvg/Hierarchical-Localization) | 图像检索、局部特征匹配及几何定位；用于视觉重定位研究。 | Apache-2.0 | 需参考图像/重建地图；特征模型及权重条款独立，不是开箱即用的在线里程计。 |
 | [Pelorus](https://codeberg.org/stelzo/pelorus) | 固定容量局部地图的 LIO，适合评估嵌入式资源开销；不含全局回环。 | [MIT](https://codeberg.org/stelzo/pelorus/raw/branch/main/LICENSE-MIT) 或 [Apache-2.0](https://codeberg.org/stelzo/pelorus/raw/branch/main/LICENSE-APACHE) | 上游提供 [ROS 2 入口](https://pelorus.steado.tech/docs/ros/)，声明支持 Humble/Jazzy/Lyrical；也有独立 MCAP 回放，未实测。 |
 | [I See You](https://github.com/tu-darmstadt-ros-pkg/i-see-you-registration) | 多机器人任务前静止 LiDAR 配准，利用彼此观测排除不可信位姿；不是持续多机 SLAM。 | [代码 MIT](https://raw.githubusercontent.com/tu-darmstadt-ros-pkg/i-see-you-registration/main/LICENSE)；数据另核 | 上游在 Ubuntu 24.04 / ROS 2 Jazzy 测试；需重力对齐扫描与不同机器人坐标帧。未复现。 |
+| [lidar_localization_ros2](https://github.com/rsasaki0109/lidar_localization_ros2) | 在已有点云地图上做 ROS 2 三维 LiDAR 定位，可向 Nav2 提供位姿；不生成地图。 | [BSD-2-Clause](https://raw.githubusercontent.com/rsasaki0109/lidar_localization_ros2/f500a59787ac5f154ff4e6a859a63ac5221396f4/LICENSE) | [v1.11.0 后的回放修复](https://github.com/rsasaki0109/lidar_localization_ros2/commit/f500a59787ac5f154ff4e6a859a63ac5221396f4)等待预期里程计的 TF，在模式缺失时不计分；仍须核对发布者、坐标帧与时间戳。 |
+| [SG-ODOM](https://github.com/ori-drs/SG-ODOM) | 足式机器人本体感知里程计；以稳定足端接触触发运动学修正，支持不变 EKF 和固定滞后平滑。 | [项目代码 BSD-3-Clause](https://raw.githubusercontent.com/ori-drs/SG-ODOM/b628c670287e8532777fb79db703045e723ef44f/LICENSE)；第三方消息另计 | 上游测试 Ubuntu 24.04 / ROS 2 Jazzy；其构建使用 GTSAM 开发版，另需对应机器人消息和模型。本目录未运行。 |
 
 ## 导航与运动规划
 
@@ -151,4 +153,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 
 2026-11-21：加入 WAM-Policy、ROAM、lidar_slam v0.12.0，当时共 **34 个入口**（含 2 个配套仿真平台）。未新增 workspace manifest。
 
-2026-11-22：加入 LocoMuJoCo v1.2.0 和 I See You，当前共 **36 个入口**（含 3 个配套仿真平台）。
+2026-11-22：加入 LocoMuJoCo v1.2.0 和 I See You，当时共 **36 个入口**（含 3 个配套仿真平台）。
+
+2026-11-23：加入 lidar_localization_ros2 与 SG-ODOM，当前共 **38 个入口**（含 3 个配套仿真平台）。

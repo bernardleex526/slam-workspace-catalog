@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-22；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-23；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -82,6 +82,16 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 链接收录不等于独立复现或部署验证。
 
+## 地图定位、本体感知与采集质量（核验 2026-11-23）
+
+| 工作 | 论文或更新日期 | 核心思路 | 官方代码与验证边界 |
+|---|---|---|---|
+| [lidar_localization_ros2](https://github.com/rsasaki0109/lidar_localization_ros2) | 2026-11-22 上游主分支修复，晚于 [v1.11.0](https://github.com/rsasaki0109/lidar_localization_ros2/releases/tag/v1.11.0) | 既有点云地图定位。在需要里程计的离线运行中，等待对应 TF 再启动，并阻止未启用里程计的运行计分 | [维护者报告](https://github.com/rsasaki0109/lidar_localization_ros2/pull/347)：Jazzy 上每例前 40 秒、15 例各运行两次，28 次正确初始化、2 次需手动、0 次错误初始化。这只验证启动，不是全程精度或实机验证。等待器取首个匹配 TF，使用时应隔离回放环境并核对实际发布者。[JEPLO 数据](https://huggingface.co/datasets/ASIG-Lab/JEPLO-Dataset)单独许可，未下载或回放。 |
+| [SG-ODOM: Event-Driven Proprioceptive State Estimation with Stability-Gated Contact Updates for Legged Robots](https://arxiv.org/abs/2611.20710)，Francesco Iotti 等 | 2026-11-16 v1，arXiv 预印本 | 高频 IMU 传播，确认足端接触或超时时作运动学修正；有不变 EKF 和固定滞后平滑两个实现 | [官方源码](https://github.com/ori-drs/SG-ODOM)已公开。[原文](https://arxiv.org/html/2611.20710v1)的固定滞后模式在 7 条 ANYmal-D GrandTour 序列上的平均平移 RPE 为 0.157 m（按 1 m 路段），较机载对照低约 25%。不是全局 ATE 或其他平台的实测结果。 |
+| [A Practical Proprioceptive Data Collection Utility for the Unitree Go1](https://arxiv.org/abs/2611.26146)，Jack Anders Smitterberg、Tan Chen | 2026-11-19 v1，arXiv 预印本 | 区分主机轮询与传感器实际状态更新，避免用重叠窗口随机分割高估分类性能 | [原文](https://arxiv.org/html/2611.26146v1)报告旧记录器以 500 Hz 轮询，但 51 段记录的不同状态更新速率中位数为 49.9 Hz（依据相邻状态比对，不是设备时间戳）。本轮未核实作者实现和数据，仅收录论文。 |
+
+未安装或运行上游算法；没有更改安装清单。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -109,3 +119,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-21：新增 WAM-Policy、ROAM、lidar_slam v0.12.0 及一项语义导航论文追踪；区分仿真、真机及代码开放范围。
 
 - 2026-11-22：新增 LocoMuJoCo v1.2.0 和 I See You 的论文与代码入口；仅论文追踪 SBEE。
+
+- 2026-11-23：新增 lidar_localization_ros2、SG-ODOM 官方入口与 Go1 采集质量论文，区分启动回归、离线指标与真实硬件验证。
