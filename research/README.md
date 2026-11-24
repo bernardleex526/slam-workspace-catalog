@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-23；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-24；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -92,6 +92,14 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 未安装或运行上游算法；没有更改安装清单。
 
+## 触觉执行、ROS 2 确定性仿真与运动规划（核验 2026-11-24）
+
+| 工作 | 论文日期 | 核心思路 | 官方代码与验证边界 |
+|---|---|---|---|
+| [FORTH: Grounding Tactile VLA Execution via Forward-Only Proxy-Control Pairing](https://arxiv.org/abs/2611.26744)，Junde Li 等 | 2026-11-19 v1，arXiv 预印本 | 将前向触觉表征、零阶适配与抓握力控制的各阶段目标对应到可测物理量 | [作者仓库](https://github.com/Jordanlllll/FORTH)公开 MIT 的 NumPy 提取实现与部分记录复算示例，不包含论文的完整仿真、VLA 策略或训练权重；不能将复算视为独立重跑或真机结果。 |
+| [One Behavior, Out of Order: Deterministic Execution and Parallel Simulation of ROS 2 Applications](https://arxiv.org/abs/2611.26676)，Chengzi Huang 等 | 2026-11-19 v1，arXiv 预印本 | 固定回调读写时间，通过任务依赖关系并行执行，保持同一输入下的模拟输出一致 | [let_ros 源码](https://github.com/ChengziHuang/let_ros)为 Apache-2.0，文档提供 Jazzy 示例和受控节点图配置。[原文](https://arxiv.org/html/2611.26676v1)的加速来自特定负载与硬件，不据此推定普通双机或既有 bag 回放的行为或性能。 |
+| [Search-Informed MPPI for Kinodynamic Motion Planning via Monte Carlo Tree Expansion（SI-MPPI）](https://arxiv.org/abs/2611.26763)，Ihab S. Mohamed、Lantao Liu | 2026-11-19 v1，arXiv 预印本 | 蒙特卡洛树扩展选择搜索方向，MPPI 并行生成符合运动约束的局部扩展 | [作者项目页](https://ihabmohamed.github.io/SI-MPPI/)标记代码待发布，先追踪论文。[原文](https://arxiv.org/html/2611.26763v1)评估的是已知静态栅格仿真，不代表动态障碍或实机性能，也不保证最短路线。 |
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -121,3 +129,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-22：新增 LocoMuJoCo v1.2.0 和 I See You 的论文与代码入口；仅论文追踪 SBEE。
 
 - 2026-11-23：新增 lidar_localization_ros2、SG-ODOM 官方入口与 Go1 采集质量论文，区分启动回归、离线指标与真实硬件验证。
+
+- 2026-11-24：新增 FORTH 与 let_ros 的论文和公开代码链接；仅论文追踪 SI-MPPI。未运行上游实现或更改安装清单。

@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-23**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-24**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -94,6 +94,7 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 | [OpenVLA](https://github.com/openvla/openvla) | 7B 视觉语言动作模型；操作任务微调与跨平台动作适配的代表基线。 | 代码 MIT；模型/底座另核 | 官方微调和评估流程；仍需目标机器人数据及动作规范。 |
 | [openpi（π₀ / π₀-FAST / π₀.₅）](https://github.com/Physical-Intelligence/openpi) | 官方通用操作策略库，涵盖 flow-matching 与自回归动作路线。 | 代码 Apache-2.0；Gemma/权重另核 | 提供 checkpoint 和微调示例；π₀.₅ 当前为 flow-matching head，不保证跨硬件零样本成功。 |
 | [Isaac GR00T N1.7](https://github.com/NVIDIA/Isaac-GR00T) | 当前官方通用机器人 VLA 入口，含人形/操作任务适配和微调流程。 | 代码 Apache-2.0；权重 NVIDIA Open Model License | N1.7 为本次主分支版本；Cosmos-Reason2-2B 等底座有访问与许可要求。 |
+| [FORTH](https://github.com/Jordanlllll/FORTH) | 用于触觉抓握执行的前向代理、零阶更新和 SlipGuard 控制核心，不是完整视觉语言动作策略。 | [公开代码 MIT](https://raw.githubusercontent.com/Jordanlllll/FORTH/main/LICENSE)；权重另核 | NumPy 核心可独立查阅；公开仓库未包含完整 VLA、训练权重或论文仿真实验环境。 |
 
 ### VLA 配套训练与部署生态
 
@@ -132,6 +133,7 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 | [Isaac Lab](https://github.com/isaac-sim/IsaacLab) | 机器人强化/模仿学习的统一仿真训练框架；新腿式学习项目的重要入口。 | 主体 BSD-3-Clause；mimic 扩展 Apache-2.0；仿真器/资产另计 | 检查后端、GPU、操作系统及资产依赖；不能把训练成功当作 sim-to-real 已通过。 |
 | [MuJoCo Playground](https://github.com/google-deepmind/mujoco_playground) | 基于 MuJoCo 的机器人学习环境及仿真/真实示例。 | Apache-2.0（外部资产另计） | 按官方示例准备加速与模型依赖；任务和真机适配覆盖不是普适保证。 |
 | [LocoMuJoCo v1.2.0](https://github.com/robfiras/loco-mujoco/releases/tag/v1.2.0) | 全身控制的模仿与强化学习基准，覆盖人形、骨骼模型与四足；提供 MuJoCo、MJX、MjWarp 后端。 | [项目代码 MIT](https://raw.githubusercontent.com/robfiras/loco-mujoco/v1.2.0/LICENSE)；数据和模型另核 | 该版本新增 SuperMimicJax，支持 MuJoCo 4；MjWarp 不支持逐环境写入高度场。不是现成真机控制器。 |
+| [let_ros](https://github.com/ChengziHuang/let_ros) | 在固定节点图内用模拟时钟和明确的回调/通信延时，对 ROS 2 应用做确定性模拟、并行测试与输出对照。 | [Apache-2.0](https://raw.githubusercontent.com/ChengziHuang/let_ros/main/LICENSE) | 上游示例使用 Ubuntu 24.04 / ROS 2 Jazzy；需配置节点图和时序。不是对任意 DDS 节点或 rosbag 自动提供确定性。 |
 
 ## 持续维护规则
 
@@ -155,4 +157,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 
 2026-11-22：加入 LocoMuJoCo v1.2.0 和 I See You，当时共 **36 个入口**（含 3 个配套仿真平台）。
 
-2026-11-23：加入 lidar_localization_ros2 与 SG-ODOM，当前共 **38 个入口**（含 3 个配套仿真平台）。
+2026-11-23：加入 lidar_localization_ros2 与 SG-ODOM，当时共 **38 个入口**（含 3 个配套仿真平台）。
+
+2026-11-24：加入 FORTH 与 let_ros，当前共 **40 个入口**（含 4 个配套仿真、训练或测试工具）。
