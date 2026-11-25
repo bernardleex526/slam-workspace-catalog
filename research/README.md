@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-24；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-25；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -100,6 +100,17 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 | [One Behavior, Out of Order: Deterministic Execution and Parallel Simulation of ROS 2 Applications](https://arxiv.org/abs/2611.26676)，Chengzi Huang 等 | 2026-11-19 v1，arXiv 预印本 | 固定回调读写时间，通过任务依赖关系并行执行，保持同一输入下的模拟输出一致 | [let_ros 源码](https://github.com/ChengziHuang/let_ros)为 Apache-2.0，文档提供 Jazzy 示例和受控节点图配置。[原文](https://arxiv.org/html/2611.26676v1)的加速来自特定负载与硬件，不据此推定普通双机或既有 bag 回放的行为或性能。 |
 | [Search-Informed MPPI for Kinodynamic Motion Planning via Monte Carlo Tree Expansion（SI-MPPI）](https://arxiv.org/abs/2611.26763)，Ihab S. Mohamed、Lantao Liu | 2026-11-19 v1，arXiv 预印本 | 蒙特卡洛树扩展选择搜索方向，MPPI 并行生成符合运动约束的局部扩展 | [作者项目页](https://ihabmohamed.github.io/SI-MPPI/)标记代码待发布，先追踪论文。[原文](https://arxiv.org/html/2611.26763v1)评估的是已知静态栅格仿真，不代表动态障碍或实机性能，也不保证最短路线。 |
 
+## 异步动作策略、人形运动与导航可靠性（核验 2026-11-25）
+
+| 工作 / 作者 | 论文日期 / 状态 | 核心思路与适用方向 | 官方代码、许可与验证边界 |
+|---|---|---|---|
+| [DelayOPSD: On-Policy Self-Distillation from a Synchronous Teacher for Real-time Asynchronous Policies](https://arxiv.org/abs/2611.30534)，Hyeonjae Kim 等 | 2026-11-23 v1，arXiv 预印本 | 在异步策略自身的延时 rollout 上，用执行时刻的同步教师监督读取较早观测和待执行动作的学生；不是给任意现成策略即插即用的修补。 | [官方实现](https://github.com/present091/DelayOPSD)含训练、评估及 YAM 推理流程，代码 Apache-2.0。作者的蒸馏权重尚待发布，YAM 示范及 rollout 数据未公开。[原文](https://arxiv.org/html/2611.30534v1)的 LIBERO/Kinetix 与 YAM 结果均未在本目录复现。 |
+| [Motion Mamba 2.0: Autoregressive Diffusion Mamba for Long-Horizon Humanoid Control](https://arxiv.org/abs/2611.29897)，Yue Huang 等 | 2026-11-23 v1，arXiv 预印本 | 通过分阶段扩散与循环记忆，流式生成符合语言和目标约束的人形参考运动；低层执行需要独立控制栈。 | [官方代码](https://github.com/AIGeeksGroup/MotionMamba2.0) Apache-2.0，含训练、评估与仿真桥接；[权重](https://huggingface.co/AIGeeksGroup/MotionMamba2.0)和[数据](https://huggingface.co/datasets/AIGeeksGroup/MotionMamba2.0)有独立发布入口，许可不从代码推定。作者有 Unitree G1 演示，本目录未运行仿真或验证真机。 |
+| [Confidently Lost: Silent Failure and Edge Deployment of Dense Visual SLAM under Photon Starvation](https://arxiv.org/abs/2611.30173)，Shrikrishna Bhagirath Rajule、Srinath Neelamagam、Aniket Bera | 2026-11-23 v1，arXiv 预印本 | 分析 MASt3R-SLAM 低照度下的静默失效：正常帧率、高匹配置信度或没有报错，并不代表地图有效。适合作为低光回归测试参考，不是新的 SLAM 系统。 | [原文](https://arxiv.org/html/2611.30173v1)中，在六条 ETH3D 低光序列中，替换为低光适配权重后，满足跟踪工作量条件的轨迹由 1 条增至 5 条，误差仍为米级；Spot 采集后在载荷 AGX Orin 回放，不是在线导航闭环。诊断信号并非通用阈值；作者拟发布代码与权重合并方法，本轮未核实独立发布。 |
+| [SuperNav-1.5: Structured Spatial Memory For Agentic Navigation Systems](https://arxiv.org/abs/2611.29912)，Jiarui Guo 等 | 2026-11-23 v1，arXiv 预印本 | 在分区占据图上写入语义记忆节点，在多会话导航中由智能体给出区域先验，再使用几何匹配重定位。 | [原文](https://arxiv.org/html/2611.29912v1)的室内 Unitree Go2 是定性演示，依赖可靠的 LiDAR/深度与里程计；未核实完整官方公开实现与许可，文中引用的 DimOS 不等同于该系统源码。 |
+
+仅收录官方链接与研究说明，不增设安装清单。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -131,3 +142,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-23：新增 lidar_localization_ros2、SG-ODOM 官方入口与 Go1 采集质量论文，区分启动回归、离线指标与真实硬件验证。
 
 - 2026-11-24：新增 FORTH 与 let_ros 的论文和公开代码链接；仅论文追踪 SI-MPPI。未运行上游实现或更改安装清单。
+
+- 2026-11-25：新增 DelayOPSD、Motion Mamba 2.0 公开代码入口，并追踪 Confidently Lost 与 SuperNav-1.5；未运行上游实现。

@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-24**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-25**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -95,6 +95,7 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 | [openpi（π₀ / π₀-FAST / π₀.₅）](https://github.com/Physical-Intelligence/openpi) | 官方通用操作策略库，涵盖 flow-matching 与自回归动作路线。 | 代码 Apache-2.0；Gemma/权重另核 | 提供 checkpoint 和微调示例；π₀.₅ 当前为 flow-matching head，不保证跨硬件零样本成功。 |
 | [Isaac GR00T N1.7](https://github.com/NVIDIA/Isaac-GR00T) | 当前官方通用机器人 VLA 入口，含人形/操作任务适配和微调流程。 | 代码 Apache-2.0；权重 NVIDIA Open Model License | N1.7 为本次主分支版本；Cosmos-Reason2-2B 等底座有访问与许可要求。 |
 | [FORTH](https://github.com/Jordanlllll/FORTH) | 用于触觉抓握执行的前向代理、零阶更新和 SlipGuard 控制核心，不是完整视觉语言动作策略。 | [公开代码 MIT](https://raw.githubusercontent.com/Jordanlllll/FORTH/main/LICENSE)；权重另核 | NumPy 核心可独立查阅；公开仓库未包含完整 VLA、训练权重或论文仿真实验环境。 |
+| [DelayOPSD](https://github.com/present091/DelayOPSD) | 为异步执行的流式 VLA 训练延时适配策略：学生用较早观测，同步教师用执行时观测，在策略自己的 rollout 上蒸馏。 | [代码 Apache-2.0](https://raw.githubusercontent.com/present091/DelayOPSD/main/LICENSE)；基础模型与示范数据另核 | 有 π₀.₅、SmolVLA、Kinetix 和 YAM 代码路径；作者的蒸馏权重尚未发布，不能直接复用论文权重。 |
 
 ### VLA 配套训练与部署生态
 
@@ -123,6 +124,7 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 | [legged_gym + RSL-RL](https://github.com/leggedrobotics/legged_gym) | 并行仿真 + PPO 的腿式运动经典基线，适合理解 RL locomotion。 | legged_gym BSD-3-Clause；RSL-RL 另见上游 | 上游已迁向 Isaac Lab，旧仓库有限维护；[RSL-RL](https://github.com/leggedrobotics/rsl_rl) 版本需配套。 |
 | [OCS2](https://github.com/leggedrobotics/ocs2) | 切换系统最优控制与 MPC；适合接触切换、腿式及移动操作控制研究。 | BSD-3-Clause | 需要动力学、约束和求解器调参；不是可直接代替电机驱动的通用控制器。 |
 | [ASAP](https://github.com/LeCAR-Lab/ASAP) | 对齐仿真与真实物理的人形敏捷全身技能学习，RSS 2025 代表路线。 | MIT（资产/数据另核） | 动作数据、机器人参数及部署依赖须准备；作者真机演示不等于本仓库安全验证。 |
+| [Motion Mamba 2.0](https://github.com/AIGeeksGroup/MotionMamba2.0) | 根据语言、历史动作及空间约束生成连续的人形参考运动；适合研究长时段运动生成。 | [代码 Apache-2.0](https://raw.githubusercontent.com/AIGeeksGroup/MotionMamba2.0/main/LICENSE)；权重和数据另核 | 上游说明使用 Linux、Python 3.11 与 NVIDIA CUDA；互动仿真另需 SONIC 和资产。不等同于可独立上机的低层控制器。 |
 
 ## 配套仿真与训练平台
 
@@ -159,4 +161,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 
 2026-11-23：加入 lidar_localization_ros2 与 SG-ODOM，当时共 **38 个入口**（含 3 个配套仿真平台）。
 
-2026-11-24：加入 FORTH 与 let_ros，当前共 **40 个入口**（含 4 个配套仿真、训练或测试工具）。
+2026-11-24：加入 FORTH 与 let_ros，当时共 **40 个入口**（含 4 个配套仿真、训练或测试工具）。
+
+2026-11-25：加入 DelayOPSD 与 Motion Mamba 2.0，当前共 **42 个入口**（含 4 个配套仿真、训练或测试工具）。论文及发布范围见 [研究索引](../research/README.md)。
