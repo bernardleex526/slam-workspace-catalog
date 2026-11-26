@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-25**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-26**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -17,6 +17,7 @@
 | 你要做什么 | 建议先看的入口 | 不能省略的工作 |
 |---|---|---|
 | 机器狗离线 LiDAR/IMU 建图 | FAST-LIO2、FAST-LIVO2、GLIM | 时间同步、标定、数据格式及漂移评估 |
+| 无 LiDAR 的四足定位研究 | AirLeg | 双目与 IMU 同步、关节及足端信号、机型运动学适配 |
 | ROS 2 地图定位与避障 | SLAM Toolbox / RTAB-Map + Nav2 + robot_localization | TF、地图坐标、底盘接口与安全停车 |
 | 根据自然语言找房间/目标 | NaVILA、StreamVLN、InternNav | 语义决策与局部避障分层，平台适配 |
 | 机械臂视觉语言操作 | OpenVLA、openpi、GR00T | 动作空间、相机、控制频率、数据微调 |
@@ -48,6 +49,7 @@
 | [SLAM Toolbox](https://github.com/SteveMacenski/slam_toolbox) | 2D LiDAR 位姿图 SLAM、继续建图及定位；ROS 2 地面导航入口。 | LGPL-2.1 | 已有工作区；不是 3D SLAM，长期建图模式的资源和实验性限制看上游。 |
 | [SE(3)-LIVOM](https://github.com/url-kaist/se3-livom-comfort) | 双 LiDAR、相机与 IMU 融合，结合自适应降采样与在线位姿图后端；适合比较腿式机器人离线包回放结果。 | [GPL-2.0](https://github.com/url-kaist/se3-livom-comfort/blob/master/LICENSE) | 上游提供 GrandTour 与 ROS 1 Noetic Docker 流程；不是 ROS 2 Humble 工作区，需注意峰值内存。 |
 | [lidar_slam v0.12.0](https://github.com/rsasaki0109/lidar_slam/releases/tag/v0.12.0) | 以 RKO-LIO 和离线图优化将 rosbag2 转为 Autoware 兼容点云地图。 | [项目代码 BSD-2-Clause](https://raw.githubusercontent.com/rsasaki0109/lidar_slam/v0.12.0/LICENSE)；依赖另计 | 上游支持 ROS 2 Humble/Jazzy；[无需 ROS 2 的离线核心](https://pypi.org/project/lidarslam/0.12.0/)是预览，官方 wheel 为 Linux。 |
+| [AirLeg](https://github.com/sair-lab/AirLeg) | 融合双目、IMU 与腿部本体感知实现四足定位和视觉建图；支持已录制 ROS 2 bag。 | [主体 GPL-3.0](https://github.com/sair-lab/AirLeg/blob/main/LICENSE.md)；随附 Fast-FoundationStereo 仅限非商业研究 | 上游测试 Ubuntu 22.04 / ROS 2 Humble 与 NVIDIA CUDA/TensorRT；新机型须核对相机同步、关节/足端信号及运动学。[适配说明](https://github.com/sair-lab/AirLeg/blob/main/docs/ADD_ROBOT.md)。不是 LiDAR 建图或覆盖巡检。 |
 
 ## 定位与状态估计
 
@@ -74,6 +76,7 @@
 | [cuRobo](https://github.com/NVlabs/curobo) | CUDA 加速的机器人运动生成，适合并行 IK、碰撞感知轨迹规划。 | Apache-2.0（当前主分支） | 需要兼容 NVIDIA GPU/CUDA 与机器人碰撞模型；不是完整导航/底层伺服栈。 |
 | [RPV ObjectNav 桥接](https://github.com/Matthew-K-Chua/rpv-ros2-bridge) / [策略](https://github.com/Matthew-K-Chua/rpv-sim2real-policy) | 以房间语义给探索边界打分，生成 Nav2 目标；是按物体类别搜索，不是跟随多步语言指令或直接控制电机。 | 两个仓库源码 MIT；模型权重与外部依赖另核 | 作者采用 ROS 2 Humble / Nav2 / SLAM Toolbox 和外部 GPU；Spot 有试验，TurtleBot 4 为迁移演示，未在本目录复现。 |
 | [ROAM](https://github.com/leggedrobotics/roam) | 用 VLM 分析地形，再以开放词汇分割生成风险与可通行图，供腿式导航使用。 | [公开代码 MIT](https://github.com/leggedrobotics/roam#license)；模型依赖另计 | 公开仓库覆盖语义感知及 ROS 接口，不是论文整套运动控制栈；上游实地测试使用云端 VLM。 |
+| [DANIEL](https://github.com/itaim18/DANIEL) | 在树莓派 5 + Hailo-8L 上推理轻量单目相对深度，以地面接触几何转换障碍距离，并做建图与局部规划。 | [代码 MIT；发布权重、数据 CC BY-NC 4.0](https://raw.githubusercontent.com/itaim18/DANIEL/main/LICENSE) | 依赖相机和地面条件，上游提供 ONNX 视频回放及硬件在环例程；不等同于四足机身起伏或真实复杂场景的导航验证。 |
 
 ## VLN：视觉语言导航
 
@@ -163,4 +166,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 
 2026-11-24：加入 FORTH 与 let_ros，当时共 **40 个入口**（含 4 个配套仿真、训练或测试工具）。
 
-2026-11-25：加入 DelayOPSD 与 Motion Mamba 2.0，当前共 **42 个入口**（含 4 个配套仿真、训练或测试工具）。论文及发布范围见 [研究索引](../research/README.md)。
+2026-11-25：加入 DelayOPSD 与 Motion Mamba 2.0，当时共 **42 个入口**（含 4 个配套仿真、训练或测试工具）。论文及发布范围见 [研究索引](../research/README.md)。
+
+2026-11-26：加入 AirLeg 与 DANIEL，当前共 **44 个入口**（含 4 个配套仿真、训练或测试工具）。见 [研究索引](../research/README.md)。

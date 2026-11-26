@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-25；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-26；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -111,6 +111,17 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 仅收录官方链接与研究说明，不增设安装清单。
 
+## 四足定位、单板机感知与导航仿真（核验 2026-11-26）
+
+| 工作 / 作者 | 论文日期 / 状态 | 核心思路与适用方向 | 官方代码、许可与验证边界 |
+|---|---|---|---|
+| [AirLeg: A Robust and Accurate Self-Supervised Visual-Inertial-Leg SLAM System](https://arxiv.org/abs/2611.32523)，Kuan Xu 等 | 2026-11-24 v1，arXiv 预印本 | 双窗口融合双目、IMU 与腿部里程计，仿真预训练后用未标注实机数据适配；在线估计可接 bag 回放，全局回环是可选离线阶段。 | [作者仓库](https://github.com/sair-lab/AirLeg)含 ROS 2 Humble 实现和检查点，主体 GPL-3.0，Fast-FoundationStereo 仅限非商业研究。[项目页](https://sairlab.org/AirLeg_homepage/)报告 17 条 GrandTour 测试序列的平均 ATE 0.19 m（无回环）；另用 D455、机身 IMU、关节等信号和 AGX Orin 在 Go2 上测试，约 0.6% 平均终点漂移，不是同一指标。未下载 Go2 数据、编译或回放。 |
+| [Seeing to Drive on a Single Board: Attention-Free Depth for Onboard Robot Navigation（DANIEL）](https://arxiv.org/abs/2611.32718)，Itai Mizlish、Boaz Ben-Moshe | 2026-11-24 v1，arXiv 预印本 | 将 Depth Anything V2-Large 蒸馏到无注意力的轻量模型并在 Hailo-8L 上做 INT8 推理，结合相机与地面接触几何估计障碍距离。 | [源码](https://github.com/itaim18/DANIEL) MIT；[发布模型](https://huggingface.co/itaimizlish/daniel-student-depth)和数据 CC BY-NC 4.0。[原文](https://arxiv.org/html/2611.32718v1)的 27.1 FPS 是特定分辨率的深度推理速度；闭环导航主要在仿真庭院中测试，含真实计算板卡的硬件在环，不是四足自主巡检实测。 |
+| [GOLD-SLAM: Gaussian-splatting Omnidirectional LiDAR-Depth SLAM](https://arxiv.org/abs/2611.32335)，Weicong Zhang 等 | 2026-11-24 v1，arXiv 预印本 | 在球面域融合全景视觉与 LiDAR/IMU，利用深度指导高斯地图的扩展和裁剪；面向三维重建，不直接生成全覆盖路线。 | [原文](https://arxiv.org/html/2611.32335v1)的 WHOLE 采集用全景双鱼眼相机与 MID360S；Orin NX 16 GB 的降配实现以 1 倍速回放 37 条序列，其中 4 条内存不足。未核实完整官方实现与 WHOLE 下载许可，仅追踪论文。 |
+| [Does Research-Paper Context Improve LLM-Generated Quadruped Navigation? An Exploratory Simulation Study](https://arxiv.org/abs/2611.32381)，Barnabas Juhasz、Rolf Pfister | 2026-11-24 v1，arXiv 预印本 | 固定语言模型和步态策略，比较有无论文上下文生成的 Go2 导航控制器，检查理想运动学与物理仿真的差别。 | [原文](https://arxiv.org/html/2611.32381v1)中，一个中途封路任务下，Isaac Sim 物理仿真完成全部四趟的控制器为有上下文 2/8、无上下文 7/8。该结果限于小样本和指定任务，不代表论文上下文或增量重规划普遍有害；未核实可运行的官方代码，未做真机测试。 |
+
+本轮只加入链接与说明，不新增安装清单。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -144,3 +155,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-24：新增 FORTH 与 let_ros 的论文和公开代码链接；仅论文追踪 SI-MPPI。未运行上游实现或更改安装清单。
 
 - 2026-11-25：新增 DelayOPSD、Motion Mamba 2.0 公开代码入口，并追踪 Confidently Lost 与 SuperNav-1.5；未运行上游实现。
+
+- 2026-11-26：新增 AirLeg 和 DANIEL 的代码入口，以及 GOLD-SLAM 和 Go2 导航仿真研究；区分公开实现、论文结果和本目录的验证范围。
