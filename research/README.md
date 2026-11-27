@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-26；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-27；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -122,6 +122,17 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 本轮只加入链接与说明，不新增安装清单。
 
+## LiDAR 里程计、四足导航与仿真（核验 2026-11-27）
+
+| 工作 / 作者 | 论文日期 / 状态 | 核心思路与适用方向 | 官方代码、许可与验证边界 |
+|---|---|---|---|
+| [xFORM: Accelerating Fixed-Lag LiDAR Odometry with Exact Factor Compression](https://arxiv.org/abs/2611.34053)，Ruogu Li、Easton R. Potokar、Michael Kaess | 2026-11-25 v1，arXiv 预印本 | 将固定匹配数据压缩成因子摘要，每对扫描以 34 个标量残差保持原目标和高斯–牛顿系统在精确算术下等价；面向固定时滞 LiDAR 里程计。 | [原文](https://arxiv.org/html/2611.34053v1)在三个数据集的 15 条完整序列上，相对 FORM 报告 CPU 版端到端快 1.1–1.4 倍、GPU 版快 2.0–4.0 倍；不等同于对其他 LIO 或 MID-360L 的比较，也不含全局回环验证。未核实 xFORM 的官方公开实现。 |
+| [Autonomous Vineyard Exploration using LiDAR Sensing: A Field Evaluation on Legged-Wheeled Quadruped Robot](https://arxiv.org/abs/2611.34246)，Spencer Sweeney 等 | 2026-11-25 v1；作者标注 ICRA 2026 农业机器人研讨会 | 用 MID-360、FAST-LIO、CMU 局部导航、RANSAC 行线检测和状态机跑 Go2-W；D435i 仅用于记录。 | [原文](https://arxiv.org/html/2611.34246v1)报告单日试验中一次约 370 m 的同一行往返无需干预，但未实现可靠的自主换行；横向偏差相对估计行中心线，并非外部真值。上游为 ROS Noetic / Ubuntu 20.04；完整系统代码未核实，不能据此承诺室内覆盖或普通四足兼容。 |
+| [FOCI: Trajectory Optimization on Gaussian Splats for Gaussian Robots](https://arxiv.org/abs/2611.33380)，Mario Gomez Andreu 等 | 2026-11-24 v1，arXiv 预印本；较早版本见 IROS 2025 | 在已有 3D 高斯场景中，同时考虑机器人体形与朝向做轨迹优化。 | [作者实现](https://github.com/leggedrobotics/foci)源码 MIT，公开示例需要继续核对 MA27 和外部场景授权。[原文](https://arxiv.org/html/2611.33380v1)含 ANYmal 真机演示，但明确软碰撞代价偶尔产生碰撞轨迹，不能代替独立碰撞检查。 |
+| [livox_gz_sim](https://github.com/mathaimp/livox_gz_sim)，Mathai | [作者公告](https://discourse.openrobotics.org/t/livox-gz-sim-livox-mid-360-and-hap-simulation-for-gazebo-harmonic/59418) 2026-11-01，本轮补录 | 用录制的扫描图样、逐点时间和噪声模型为 Gazebo 场景生成类 Livox 数据，适合在真机前检查消息类型、点时序及仿真接口。 | 源码和引用的 Livox 扫描图样均标 MIT；上游报告在移动仿真传感器上测试 FAST-LIO 的 ROS 2 分支。不是新 SLAM 算法；不保证真实材质、遮挡或 MID-360L 一致性。 |
+
+仅加入链接与说明，不新增安装清单。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -157,3 +168,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-25：新增 DelayOPSD、Motion Mamba 2.0 公开代码入口，并追踪 Confidently Lost 与 SuperNav-1.5；未运行上游实现。
 
 - 2026-11-26：新增 AirLeg 和 DANIEL 的代码入口，以及 GOLD-SLAM 和 Go2 导航仿真研究；区分公开实现、论文结果和本目录的验证范围。
+
+- 2026-11-27：新增 FOCI 与 livox_gz_sim 的代码入口，另追踪 xFORM 与 Go2-W 单行自主导航实地评估。

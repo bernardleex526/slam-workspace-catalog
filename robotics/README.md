@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-26**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-27**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -18,6 +18,7 @@
 |---|---|---|
 | 机器狗离线 LiDAR/IMU 建图 | FAST-LIO2、FAST-LIVO2、GLIM | 时间同步、标定、数据格式及漂移评估 |
 | 无 LiDAR 的四足定位研究 | AirLeg | 双目与 IMU 同步、关节及足端信号、机型运动学适配 |
+| Gazebo 中模拟 Livox 数据接口 | livox_gz_sim | 区分 MID-360 和 MID-360L；仿真接通不能代替真机时间戳和遮挡验证 |
 | ROS 2 地图定位与避障 | SLAM Toolbox / RTAB-Map + Nav2 + robot_localization | TF、地图坐标、底盘接口与安全停车 |
 | 根据自然语言找房间/目标 | NaVILA、StreamVLN、InternNav | 语义决策与局部避障分层，平台适配 |
 | 机械臂视觉语言操作 | OpenVLA、openpi、GR00T | 动作空间、相机、控制频率、数据微调 |
@@ -77,6 +78,7 @@
 | [RPV ObjectNav 桥接](https://github.com/Matthew-K-Chua/rpv-ros2-bridge) / [策略](https://github.com/Matthew-K-Chua/rpv-sim2real-policy) | 以房间语义给探索边界打分，生成 Nav2 目标；是按物体类别搜索，不是跟随多步语言指令或直接控制电机。 | 两个仓库源码 MIT；模型权重与外部依赖另核 | 作者采用 ROS 2 Humble / Nav2 / SLAM Toolbox 和外部 GPU；Spot 有试验，TurtleBot 4 为迁移演示，未在本目录复现。 |
 | [ROAM](https://github.com/leggedrobotics/roam) | 用 VLM 分析地形，再以开放词汇分割生成风险与可通行图，供腿式导航使用。 | [公开代码 MIT](https://github.com/leggedrobotics/roam#license)；模型依赖另计 | 公开仓库覆盖语义感知及 ROS 接口，不是论文整套运动控制栈；上游实地测试使用云端 VLM。 |
 | [DANIEL](https://github.com/itaim18/DANIEL) | 在树莓派 5 + Hailo-8L 上推理轻量单目相对深度，以地面接触几何转换障碍距离，并做建图与局部规划。 | [代码 MIT；发布权重、数据 CC BY-NC 4.0](https://raw.githubusercontent.com/itaim18/DANIEL/main/LICENSE) | 依赖相机和地面条件，上游提供 ONNX 视频回放及硬件在环例程；不等同于四足机身起伏或真实复杂场景的导航验证。 |
+| [FOCI](https://github.com/leggedrobotics/foci) | 用高斯表示机器人及环境，以重叠积分作为碰撞代价，优化带朝向的轨迹。 | [源码 MIT](https://raw.githubusercontent.com/leggedrobotics/foci/main/LICENSE)；场景资产与 MA27 求解器许可另核 | 上游示例需要现成的高斯场景和 MA27 授权。碰撞是软代价，不保证无碰撞；不是 Nav2 栅格地图的直接替代品。 |
 
 ## VLN：视觉语言导航
 
@@ -139,6 +141,7 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 | [MuJoCo Playground](https://github.com/google-deepmind/mujoco_playground) | 基于 MuJoCo 的机器人学习环境及仿真/真实示例。 | Apache-2.0（外部资产另计） | 按官方示例准备加速与模型依赖；任务和真机适配覆盖不是普适保证。 |
 | [LocoMuJoCo v1.2.0](https://github.com/robfiras/loco-mujoco/releases/tag/v1.2.0) | 全身控制的模仿与强化学习基准，覆盖人形、骨骼模型与四足；提供 MuJoCo、MJX、MjWarp 后端。 | [项目代码 MIT](https://raw.githubusercontent.com/robfiras/loco-mujoco/v1.2.0/LICENSE)；数据和模型另核 | 该版本新增 SuperMimicJax，支持 MuJoCo 4；MjWarp 不支持逐环境写入高度场。不是现成真机控制器。 |
 | [let_ros](https://github.com/ChengziHuang/let_ros) | 在固定节点图内用模拟时钟和明确的回调/通信延时，对 ROS 2 应用做确定性模拟、并行测试与输出对照。 | [Apache-2.0](https://raw.githubusercontent.com/ChengziHuang/let_ros/main/LICENSE) | 上游示例使用 Ubuntu 24.04 / ROS 2 Jazzy；需配置节点图和时序。不是对任意 DDS 节点或 rosbag 自动提供确定性。 |
+| [livox_gz_sim](https://github.com/mathaimp/livox_gz_sim) | 社区 Gazebo Harmonic 插件，模拟 Livox MID-360/HAP 非重复扫描和逐点时间，发布与驱动格式对齐的 CustomMsg 或 PointCloud2。 | [源码 MIT](https://raw.githubusercontent.com/mathaimp/livox_gz_sim/main/LICENSE)；上游注明扫描图样另保留 Livox MIT 许可 | 文档目标为 ROS 2 Jazzy，依赖 OpenGL GPU；仅模拟单回波，动态物体按扫描分片采样。未核实支持 MID-360L 或 Humble，不替代真机回放。 |
 
 ## 持续维护规则
 
@@ -168,4 +171,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 
 2026-11-25：加入 DelayOPSD 与 Motion Mamba 2.0，当时共 **42 个入口**（含 4 个配套仿真、训练或测试工具）。论文及发布范围见 [研究索引](../research/README.md)。
 
-2026-11-26：加入 AirLeg 与 DANIEL，当前共 **44 个入口**（含 4 个配套仿真、训练或测试工具）。见 [研究索引](../research/README.md)。
+2026-11-26：加入 AirLeg 与 DANIEL，当时共 **44 个入口**（含 4 个配套仿真、训练或测试工具）。见 [研究索引](../research/README.md)。
+
+2026-11-27：加入 FOCI 和 livox_gz_sim，当前共 **46 个入口**（含 5 个配套仿真、训练或测试工具）。见 [研究索引](../research/README.md)。
