@@ -1,6 +1,6 @@
 # 机器人算法导航：从感知到行动
 
-最近维护：**2026-11-27**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
+最近维护：**2026-11-28**；初始条目核验于 2026-11-18，新增条目的核验日期见更新记录。这是以官方链接为主的选型入口，不下载、不复制第三方仓库，也不会自动安装模型或依赖。
 
 来源与版本依据见 [核验快照](SOURCES.md)。
 
@@ -142,6 +142,7 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 | [LocoMuJoCo v1.2.0](https://github.com/robfiras/loco-mujoco/releases/tag/v1.2.0) | 全身控制的模仿与强化学习基准，覆盖人形、骨骼模型与四足；提供 MuJoCo、MJX、MjWarp 后端。 | [项目代码 MIT](https://raw.githubusercontent.com/robfiras/loco-mujoco/v1.2.0/LICENSE)；数据和模型另核 | 该版本新增 SuperMimicJax，支持 MuJoCo 4；MjWarp 不支持逐环境写入高度场。不是现成真机控制器。 |
 | [let_ros](https://github.com/ChengziHuang/let_ros) | 在固定节点图内用模拟时钟和明确的回调/通信延时，对 ROS 2 应用做确定性模拟、并行测试与输出对照。 | [Apache-2.0](https://raw.githubusercontent.com/ChengziHuang/let_ros/main/LICENSE) | 上游示例使用 Ubuntu 24.04 / ROS 2 Jazzy；需配置节点图和时序。不是对任意 DDS 节点或 rosbag 自动提供确定性。 |
 | [livox_gz_sim](https://github.com/mathaimp/livox_gz_sim) | 社区 Gazebo Harmonic 插件，模拟 Livox MID-360/HAP 非重复扫描和逐点时间，发布与驱动格式对齐的 CustomMsg 或 PointCloud2。 | [源码 MIT](https://raw.githubusercontent.com/mathaimp/livox_gz_sim/main/LICENSE)；上游注明扫描图样另保留 Livox MIT 许可 | 文档目标为 ROS 2 Jazzy，依赖 OpenGL GPU；仅模拟单回波，动态物体按扫描分片采样。未核实支持 MID-360L 或 Humble，不替代真机回放。 |
+| [Real2SimLab](https://github.com/Real2SimHub/Real2SimLab) | 为视频到可执行仿真任务提供统一评估入口，运行提交的程序并沿用各基准原有评分器。 | [平台源码 Apache-2.0](https://raw.githubusercontent.com/Real2SimHub/Real2SimLab/main/LICENSE)；外部基准与数据按原条款 | Python 3.11+，按上游要求在 Docker 等隔离环境内运行；不附带学习训练器或权重，不是 SLAM 或 Gazebo 导航验收基准。 |
 
 ## 持续维护规则
 
@@ -173,4 +174,6 @@ VLA 将视觉、语言映射到动作策略，多用于操作；动作语义、�
 
 2026-11-26：加入 AirLeg 与 DANIEL，当时共 **44 个入口**（含 4 个配套仿真、训练或测试工具）。见 [研究索引](../research/README.md)。
 
-2026-11-27：加入 FOCI 和 livox_gz_sim，当前共 **46 个入口**（含 5 个配套仿真、训练或测试工具）。见 [研究索引](../research/README.md)。
+2026-11-27：加入 FOCI 和 livox_gz_sim，当时共 **46 个入口**（含 5 个配套仿真、训练或测试工具）。见 [研究索引](../research/README.md)。
+
+2026-11-28：加入 Real2SimLab，当前共 **47 个入口**（含 6 个配套仿真、训练或测试工具）。见 [研究索引](../research/README.md)。

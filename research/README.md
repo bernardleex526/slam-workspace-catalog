@@ -2,7 +2,7 @@
 
 常用算法与跨领域选型先看 [机器人算法导航](../robotics/README.md)。本页保留具体论文与待发布代码的追踪记录。
 
-最新检索日期：2026-11-27；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
+最新检索日期：2026-11-28；旧条目保留原核验日期，新条目日期见小节。这里记录研究线索，不是评测排名；代码状态是当日快照。
 首次补录包含近期论文和较早但目录尚未收录的算法，不等于全部在本日发布。
 
 ## 稠密视觉 SLAM / 3D 基础模型（核验 2026-11-17）
@@ -133,6 +133,18 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 
 仅加入链接与说明，不新增安装清单。
 
+## Real-to-Sim 评估与导航记忆（核验 2026-11-28）
+
+本轮核验时 arXiv Robotics 最新公告仍为 11 月 26 日；以下日期是论文首次提交时间。
+
+| 工作 / 作者 | 论文日期 / 状态 | 核心思路与适用方向 | 官方代码、许可与验证边界 |
+|---|---|---|---|
+| [Real2SimLab: A Unified Platform for Real-to-Simulation Transfer](https://arxiv.org/abs/2611.34849)，Yongchang Zhang 等 | 2026-11-25 v1，arXiv 预印本 | 以可执行仿真程序为统一产物，对接多种方法和基准，使用原基准评分器；可导出训练任务和评分，提供训练集与评估集重叠检查。 | [作者实现](https://github.com/Real2SimHub/Real2SimLab) Apache-2.0，外部数据逐项看条款。[原文](https://arxiv.org/html/2611.34849v1)报告支持 6 套已有基准；上游未附带通用训练器或权重，不代表自动得到经过真值验证的数字孪生。 |
+| [MERLoc: Robust Robot Localization in Dynamic Environments with Pose-Based Retrieval over 3D Gaussian Splatting References](https://arxiv.org/abs/2611.34932)，Michael Baumgartner 等 | 2026-11-25 v1，arXiv 预印本 | 在已有米制 3D 高斯地图离线渲染并预编码参考视图，定位时依靠位姿先验与视角检索，再使用现有相对定位后端。 | [原文](https://arxiv.org/html/2611.34932v1)报告作者机器人在动态走廊演示中，Jetson Orin NX 上只有采用 4 个参考视图的传统后端达到定位约 5 Hz；无位姿先验的初始化或恢复退回外观匹配。未核实作者完整实现和许可，仅论文追踪。 |
+| [Memory Is Not Ground Truth: Revising Navigation Authority under Unreliable VLM Evidence for Persistent Semantic Navigation](https://arxiv.org/abs/2611.34915)，Sumukh Shrote 等 | 2026-11-25 v1，arXiv 预印本 | 对相关的重复漏检不重复计证；缺乏支持的历史记忆可暂停作为直接导航目标，但不会被删除或当作物体不存在。 | [原文](https://arxiv.org/html/2611.34915v1)的 Spot 室内实验中，三个共享同一历史的配对决策场景均由旧记忆改选语义探索边界；不是三次独立成功率，也未量化端到端导航收益。未核实完整官方公开实现，仅论文追踪。 |
+
+仅加入链接与说明，不新增安装清单。
+
 ## 后续分类与纳入标准
 
 - 扩展方向：VLN、VLA、世界模型、导航规划、定位、运动控制；默认只加官方链接及说明，保留代码/模型/数据许可边界。
@@ -170,3 +182,5 @@ VGGT-SLAM 2.0 的 arXiv 摘要仍写代码将发布，但当前官方仓库已�
 - 2026-11-26：新增 AirLeg 和 DANIEL 的代码入口，以及 GOLD-SLAM 和 Go2 导航仿真研究；区分公开实现、论文结果和本目录的验证范围。
 
 - 2026-11-27：新增 FOCI 与 livox_gz_sim 的代码入口，另追踪 xFORM 与 Go2-W 单行自主导航实地评估。
+
+- 2026-11-28：新增 Real2SimLab 代码入口；MERLoc 与导航记忆可靠性研究均为论文追踪。
